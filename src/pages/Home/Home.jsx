@@ -1,10 +1,12 @@
 import HomeHero from "../../components/HomeHero/HomeHero";
+import SecurityAndSafetyInfo from "../../components/SecurityAndSafetyInfo/SecurityAndSafetyInfo";
 
  
 const Home = () => {
   return (
-    <div className=" bg-red-200">
+    <div className=" ">
        <HomeHero/>
+       <SecurityAndSafetyInfo/>
     </div>
   );
 };

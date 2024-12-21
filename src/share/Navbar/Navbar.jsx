@@ -59,11 +59,10 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed inset-x-0 mx-auto w-full backdrop-blur-md shadow-md"
+      className="fixed inset-x-0 z-50  mx-auto w-full backdrop-blur-md shadow-md"
       style={{
         background:
           "linear-gradient(to right, rgba(6, 78, 59, 0.8), rgba(16, 185, 129, 1), rgba(167, 243, 208, 0.7))",
-        
       }}
     >
       <div className="max-w-[1400px] mx-auto flex justify-between items-center py-4 px-6">
