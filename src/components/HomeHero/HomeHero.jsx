@@ -4,10 +4,20 @@ import hero from "../../assets/imgs/Hero.png";
 const HomeHero = () => {
   return (
     <div
-      className=" flex flex-col w-full pt-[10vh] min-h-[600px] bg-cover bg-center"
+      className="flex flex-col w-full pt-[10vh] min-h-[600px]  bg-center"
       style={{
-        backgroundImage: `url(${hero})`,
+        backgroundImage: `
+        linear-gradient(
+          to right bottom, 
+          rgba(7, 7, 7, 0.8), 
+          rgba(40, 181, 131, 0.4)
+        ), 
+        url(${hero})
+      `,
         backgroundRepeat: "no-repeat",
+        backgroundPosition: "top",
+        backgroundSize: "cover",
+        boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
       }}
     >
       <div className="min-h-[600px] max-w-[1400px] mx-auto py-14 px-6 md:px-12 text-white relative">
@@ -80,7 +90,6 @@ const HomeHero = () => {
       </div>
 
       {/* Bottom Content Section */}
-       
     </div>
   );
 };
