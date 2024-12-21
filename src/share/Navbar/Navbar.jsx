@@ -139,11 +139,11 @@ const Navbar = () => {
         </nav>
 
         <div className="flex justify-center items-center gap-3">
-          <span className="text-white py-2 px-3 rounded-full bg-green-700">
+          <span className="text-white py-2 px-3 rounded-full bg-green-700 text-sm">
             +1 (234) 567-890
           </span>
-          <span className="w-10 h-10   flex justify-center items-center  rounded-full bg-green-700">
-            <MdOutlineWhatsapp className="text-4xl text-white p-[3px]" />
+          <span className="w-[33px] h-[33px]   flex justify-center items-center  rounded-full bg-green-700">
+            <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
           </span>
         </div>
       </div>
