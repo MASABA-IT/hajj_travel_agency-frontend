@@ -142,8 +142,8 @@ const Navbar = () => {
           <span className="text-white py-2 px-3 rounded-full bg-green-700">
             +1 (234) 567-890
           </span>
-          <span className="w-8 h-8   flex justify-center items-center  rounded-full bg-green-700">
-            <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
+          <span className="w-10 h-10   flex justify-center items-center  rounded-full bg-green-700">
+            <MdOutlineWhatsapp className="text-4xl text-white p-[3px]" />
           </span>
         </div>
       </div>
