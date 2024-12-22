@@ -25,15 +25,15 @@ const ExploreSlidePackages = () => {
 
   return (
     <section
-      className="w-full min-h-[60vh] bg-cover flex justify-center items-center"
+      className="w-full h-auto bg-cover flex justify-center items-center md:py-14"
       style={{
         backgroundImage: `url(${caliography})`,
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-[1400px] mx-auto py-14 flex justify-between items-center">
-        <div className="flex-1 flex flex-col gap-5">
-          <h1 className="md:text-5xl text-[#24aa86]">
+      <div className="max-w-[1400px] mx-auto py-14 flex flex-col-reverse md:flex-row justify-between items-center md:gap-10">
+        <div className="mt-10 md:mt-0 w-[90%] md:w-full flex-1 flex flex-col gap-5">
+          <h1 className=" text-3xl md:text-5xl text-[#24aa86]">
             Find the best Umrah package from Bangladesh
           </h1>
           <p className="text-gray-700">
@@ -42,13 +42,13 @@ const ExploreSlidePackages = () => {
             and reliable Hajj or Umrah experience designed to meet your unique
             needs and expectations.
           </p>
-          <button className="w-[200px] px-4 py-2 md:px-6 md:py-3 bg-[#24aa86] text-gray-100 text-sm md:text-lg rounded-md shadow-lg hover:bg-[#27725e] transition">
+          <button className="max-w-[200px] px-4 py-2 md:px-6 md:py-3 bg-[#24aa86] text-gray-100 text-sm md:text-lg rounded-md shadow-lg hover:bg-[#27725e] transition">
             Explore Package
           </button>
         </div>
 
         {/* Right side: Image container */}
-        <div className="flex-1 relative overflow-hidden">
+        <div className="w-[90%] md:w-full flex-1 relative overflow-hidden">
           {/* Display the current image based on selectedImage */}
           <img
             src={images[selectedImage]}
