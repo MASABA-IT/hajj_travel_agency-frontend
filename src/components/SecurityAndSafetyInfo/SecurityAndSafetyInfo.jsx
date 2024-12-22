@@ -1,64 +1,71 @@
-import { IoShieldCheckmark } from "react-icons/io5";
-import bgImg from '../../assets/imgs/Caliography.png'
+import bgImg from "../../assets/imgs/Caliography.png";
+import iconOne from "../../assets/icons/Vector.png";
+import iconTwo from "../../assets/icons/Vector.png";
+import iconThree from "../../assets/icons/Vector3.png";
+import iconFour from "../../assets/icons/Vector4.png";
 const SecurityAndSafetyInfo = () => {
   const safetyInfo = [
     {
-      icon: <IoShieldCheckmark className="text-4xl text-[#24aa86]" />,
-      title: "100% Safety Guaranteed",
+      icon: iconOne,
+      title: "Safe and Securely Umrah and Hajj Travel ",
       description:
-        "We ensure your safety with top-notch services, including 24/7 support and guidance throughout your journey.",
+        "Safe and secure Umrah and Hajj travel services, ensuring comfort, reliability, spiritual guidance, and a seamless pilgrimage experience.",
     },
     {
-      icon: <IoShieldCheckmark className="text-4xl text-[#24aa86]" />,
-      title: "Comfortable Accommodations",
+      icon: iconTwo,
+      title: "We Will Give You 24/7 Hr Support to Help Your Trip",
       description:
-        "We provide comfortable and convenient accommodations to make your pilgrimage peaceful and relaxing.",
+        "We provide 24/7 support to ensure your trip is smooth, offering assistance, guidance, and solutions whenever you need them.",
     },
     {
-      icon: <IoShieldCheckmark className="text-4xl text-[#24aa86]" />,
-      title: "Affordable Packages",
+      icon: iconThree,
+      title: "Details and Discount For Your Hajj and Umrah!",
       description:
-        "Our packages are designed to fit various budgets, ensuring you get the best value for your pilgrimage experience.",
+        "Discover exclusive details and discounts for your Hajj and Umrah journey, offering affordable, reliable, and spiritually enriching experiences.",
     },
     {
-      icon: <IoShieldCheckmark className="text-4xl text-[#24aa86]" />,
-      title: "Expert Guides & Support",
+      icon: iconFour,
+      title: "Official Registered Travel For Your Hajj and umrah",
       description:
-        "We provide expert guidance and support during your pilgrimage, ensuring a smooth and spiritual journey.",
+        "Trust our officially registered travel services for your Hajj and Umrah, providing reliability, authenticity, and a seamless pilgrimage experience.",
     },
   ];
 
   return (
-    <div className="w-full   py-12 pt-44 px-6 md:px-12  bg-cover" style={{
-            backgroundImage: `url(${bgImg})`,
-            backgroundRepeat: "no-repeat",
-          }}>
-            <div className="max-w-[1400px] mx-auto  ">
-                
-      <h3 className="text-2xl md:text-4xl font-semibold text-center mb-8">
-        We Will Give You 100% Security, Safety For Your Hajj and Umrah!
-      </h3>
-      <p className="text-center text-lg md:text-xl mb-10">
-        We are dedicated to ensuring a seamless, comfortable, and affordable
-        pilgrimage, combining professional expertise with unwavering commitment
-        to your satisfaction and spiritual fulfillment.
-      </p>
+    <div
+      className="w-full   py-12 pt-56 px-6 md:px-12  bg-cover "
+      style={{
+        backgroundImage: `url(${bgImg})`,
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="max-w-[1400px] mx-auto  ">
+        <h3 className="text-2xl md:text-4xl font-semibold text-center mb-8">
+          We Will Give You 100% Security, Safety For Your Hajj and Umrah!
+        </h3>
+        <p className="text-center text-lg md:text-xl mb-10">
+          We are dedicated to ensuring a seamless, comfortable, and affordable
+          pilgrimage, combining professional expertise with unwavering
+          commitment to your satisfaction and spiritual fulfillment.
+        </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {safetyInfo.map((info, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {safetyInfo.map((info, index) => (
             <div
-            key={index}
-            className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col items-center gap-4"
+              key={index}
+              className="bg-gray-500  p-6 rounded-lg shadow-lg text-center flex flex-col items-center gap-4"
             >
-            <div className="text-4xl">{info.icon}</div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#24aa86]">
-              {info.title}
-            </h2>
-            <p className="text-sm md:text-base text-gray-600">
-              {info.description}
-            </p>
-          </div>
-        ))}
+              <div className="text-4xl">
+                <img src={info?.icon} alt="Icon" />
+              </div>
+              <h2 className="text-md md:text-xl font-bold text-white ">
+                {info.title}
+              </h2>
+              <p className="text-sm md:text-base text-gray-50">
+                {info.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
