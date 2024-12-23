@@ -1,3 +1,6 @@
+import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaSquareInstagram } from "react-icons/fa6";
+
 const Footer = () => {
   return (
     <footer className="w-full bg-[#24aa86] py-10">
@@ -26,11 +29,22 @@ const Footer = () => {
             <h3 className="text-white text-xl font-semibold mb-4">
               Extraordinary Tour Service
             </h3>
-            <ul className="text-white flex gap-2">
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>LinkedIn</li>
-              <li>Instagram</li>
+            <ul className="text-white  flex gap-2">
+              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaFacebookF />
+              </a>
+              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaTwitter />
+
+              </a>
+              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaLinkedinIn />
+
+
+              </a>
+              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaSquareInstagram />
+
+
+              </a>
+            
+             
             </ul>
           </div>
 

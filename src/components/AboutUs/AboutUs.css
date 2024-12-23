@@ -1,0 +1,11 @@
+.parent:hover img:not(:hover){
+      transform: scale(.96);
+}
+.parent img{
+  outline-offset: 10px;
+ 
+}
+.parent img:hover{
+  transform: scale(1.05) translateY(-6px);
+   outline: 6px solid #24aa86;
+}
