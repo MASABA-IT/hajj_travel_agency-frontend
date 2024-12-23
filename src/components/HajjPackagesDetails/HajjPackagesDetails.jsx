@@ -46,7 +46,7 @@ const PackageDetailsCard = ({ imgSrc, title, details }) => {
   return (
     <div
       ref={cardRef}
-      className={`bg-white p-4 shadow-md rounded-md transform transition-transform duration-700 scale-90 hover:scale-95 ${
+      className={`bg-white p-4 shadow-md rounded-md transform transition-transform duration-700 scale-90 hover:scale-95 hover:cursor-pointer ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
     >
@@ -290,7 +290,7 @@ const HajjPackagesDetails = () => {
 
   return (
     <section
-      className="w-full min-h-[100vh] py-14 bg-cover"
+      className="w-full    py-14 bg-cover"
       style={{
         backgroundImage: `linear-gradient(to right, rgba(144, 238, 144, 0.1), rgba(144, 238, 144, 0.2)), url(${caliography})`,
       }}

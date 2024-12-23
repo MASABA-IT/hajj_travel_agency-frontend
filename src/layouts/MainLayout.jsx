@@ -5,21 +5,21 @@ import { Suspense, useEffect } from "react";
 import FullPageLoader from "../share/FullPageLoader/FullPageLoader";
 
 const MainLayout = () => {
-    const location = useLocation();
+  const location = useLocation();
 
-    useEffect(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, [location.pathname]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location.pathname]);
   return (
     <div>
       <Navbar />
       <main>
-      <Suspense fallback={<FullPageLoader />}>
-        <Outlet />
-      </Suspense>
+        <Suspense fallback={<FullPageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>
