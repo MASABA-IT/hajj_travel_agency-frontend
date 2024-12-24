@@ -23,38 +23,38 @@ const UmrahVisaRequirements = () => {
           <ul className="list-inside pl-5 space-y-3">
             <li className="flex items-center">
               <span className="flex justify-center items-center shadow-lg w-2 h-2 bg-[#24aa86] rounded-full mr-3 ">
-                <span className="w-1 h-1 rounded-full bg-black "></span>
+                <span className="w-1 h-1 rounded-full bg-white "></span>
               </span>
               Valid passport (must be valid for 6 months from the date of
               travel)
             </li>
             <li className="flex items-center">
               <span className="flex justify-center items-center shadow-lg w-2 h-2 bg-[#24aa86] rounded-full mr-3 ">
-                <span className="w-1 h-1 rounded-full bg-black "></span>
+                <span className="w-1 h-1 rounded-full bg-white "></span>
               </span>
               Recent passport-sized photographs
             </li>
             <li className="flex items-center">
               <span className="flex justify-center items-center shadow-lg w-2 h-2 bg-[#24aa86] rounded-full mr-3 ">
-                <span className="w-1 h-1 rounded-full bg-black "></span>
+                <span className="w-1 h-1 rounded-full bg-white "></span>
               </span>
               Vaccination certificate
             </li>
             <li className="flex items-center">
               <span className="flex justify-center items-center shadow-lg w-2 h-2 bg-[#24aa86] rounded-full mr-3 ">
-                <span className="w-1 h-1 rounded-full bg-black "></span>
+                <span className="w-1 h-1 rounded-full bg-white "></span>
               </span>
               Copy of NID / Smart card
             </li>
             <li className="flex items-center">
               <span className="flex justify-center items-center shadow-lg w-2 h-2 bg-[#24aa86] rounded-full mr-3 ">
-                <span className="w-1 h-1 rounded-full bg-black "></span>
+                <span className="w-1 h-1 rounded-full bg-white "></span>
               </span>
               Birth certificate copy (for children)
             </li>
             <li className="flex items-center">
               <span className="flex justify-center items-center shadow-lg w-2 h-2 bg-[#24aa86] rounded-full mr-3 ">
-                <span className="w-1 h-1 rounded-full bg-black "></span>
+                <span className="w-1 h-1 rounded-full bg-white "></span>
               </span>
               Marriage certificate copy (for couples)
             </li>

@@ -1,4 +1,6 @@
 import HajjPackagesDetails from "../../components/HajjPackagesDetails/HajjPackagesDetails";
+import OurFaq from "../../components/OurFaq/OurFaq";
+import TravelHelpSupport from "../../components/TravelHelpSupport/TravelHelpSupport";
 import UmrahGroupService from "../../components/UmrahGroupService/UmrahGroupService";
 import UmrahHeroSection from "../../components/UmrahHeroSection/UmrahHeroSection";
 import UmrahPerformRewards from "../../components/UmrahPerformRewards/UmrahPerformRewards";
@@ -9,9 +11,12 @@ const UmrahPackages = () => {
     <section className=" h-auto mt-28">
       <UmrahHeroSection />
       <HajjPackagesDetails />
-      <UmrahGroupService/>
-      <UmrahVisaRequirements/>
-      <UmrahPerformRewards/>
+      <UmrahGroupService />
+      <UmrahVisaRequirements />
+      <div className="max-w-[1400px] mx-auto h-[3px] bg-gray-300"></div>
+      <UmrahPerformRewards />
+      <TravelHelpSupport />
+      <OurFaq/ >
     </section>
   );
 };
