@@ -30,21 +30,30 @@ const Footer = () => {
               Extraordinary Tour Service
             </h3>
             <ul className="text-white  flex gap-2">
-              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaFacebookF />
+              <a
+                href="#"
+                className="transition-all duration-300 transform hover:scale-110 hover:text-[#3b5998]" // Facebook color
+              >
+                <FaFacebookF />
               </a>
-              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaTwitter />
-
+              <a
+                href="#"
+                className="transition-all duration-300 transform hover:scale-110 hover:text-[#2f688b]" // Twitter color
+              >
+                <FaTwitter />
               </a>
-              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaLinkedinIn />
-
-
+              <a
+                href="#"
+                className="transition-all duration-300 transform hover:scale-110 hover:text-[#0077b5]" // LinkedIn color
+              >
+                <FaLinkedinIn />
               </a>
-              <a href="#" className="transition-colors duration-75 hover:text-[#c2d3cee5]"><FaSquareInstagram />
-
-
+              <a
+                href="#"
+                className="transition-all duration-300 transform hover:scale-110 hover:text-[#e4405f]" // Instagram color
+              >
+                <FaSquareInstagram />
               </a>
-            
-             
             </ul>
           </div>
 

@@ -5,6 +5,7 @@ import { startLoading, stopLoading } from "../store/slices/loadingSlice";
 import FullPageLoader from "../share/FullPageLoader/FullPageLoader";
 import Home from "../pages/Home/Home";
 import MainLayout from "../layouts/MainLayout";
+import UmrahPackages from "../pages/UmrahPackages/UmrahPackages";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ const AppRoutes = () => {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/umrah-packages",
+          element: <UmrahPackages />,
         },
       ],
     },

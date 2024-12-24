@@ -11,13 +11,48 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const [timeoutId, setTimeoutId] = useState(null);
 
+  // Define menu items with actual href paths for the submenu items
   const menuItems = [
-    { name: "Umrah", subMenu: ["Sub item 1", "Sub item 2"] },
-    { name: "Hajj", subMenu: ["Sub item 1", "Sub item 2"] },
-    { name: "Facilities", subMenu: ["Sub item 1 Sub item item", "Sub item 2"] },
-    { name: "Guidance", subMenu: ["Sub item 1", "Sub item 2"] },
-    { name: "Management Board", subMenu: ["Sub item 1", "Sub item 2"] },
-    { name: "About Us", subMenu: [] },
+    {
+      name: "Umrah",
+      subMenu: [
+        { name: "Umrah Packages", link: "/umrah-packages" },
+        { name: "Benefit Of Umrah", link: "/benefit-of-umrah" },
+        { name: "How To Perform Umrah", link: "/how-to-perform-umrah" },
+      ],
+    },
+    {
+      name: "Hajj",
+      subMenu: [
+        { name: "Sub item 1", link: "/hajj-item-1" },
+        { name: "Sub item 2", link: "/hajj-item-2" },
+      ],
+    },
+    {
+      name: "Facilities",
+      subMenu: [
+        { name: "Sub item 1", link: "/facilities-item-1" },
+        { name: "Sub item 2", link: "/facilities-item-2" },
+      ],
+    },
+    {
+      name: "Guidance",
+      subMenu: [
+        { name: "Sub item 1", link: "/guidance-item-1" },
+        { name: "Sub item 2", link: "/guidance-item-2" },
+      ],
+    },
+    {
+      name: "Management Board",
+      subMenu: [
+        { name: "Sub item 1", link: "/board-item-1" },
+        { name: "Sub item 2", link: "/board-item-2" },
+      ],
+    },
+    {
+      name: "About Us",
+      subMenu: [{ name: "Company Info", link: "/about-us" }],
+    },
   ];
 
   const handleMouseEnter = (index) => {
@@ -59,7 +94,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="fixed inset-x-0 z-50  mx-auto w-full backdrop-blur-md shadow-md"
+      className="fixed inset-x-0 z-50 mx-auto w-full backdrop-blur-md shadow-md "
       style={{
         background:
           "linear-gradient(to right, rgba(6, 78, 59, 0.3), rgba(16, 185, 129, 0.7), rgba(167, 243, 208, 1))",
@@ -85,7 +120,7 @@ const Navbar = () => {
           </div>
 
           <ul
-            className={` md:flex items-center justify-end gap-4 py-4 text-base font-medium ${
+            className={`md:flex items-center justify-end gap-4 py-4 text-base font-medium ${
               isMobileMenuOpen ? "block" : "hidden"
             } md:block`}
           >
@@ -106,8 +141,8 @@ const Navbar = () => {
                     <AiFillCaretDown
                       className={`inline-block ml-2 transition-transform duration-200 transform ${
                         activeMenu === index || clickedMenu === index
-                          ? "rotate-180  "
-                          : " "
+                          ? "rotate-180"
+                          : ""
                       }`}
                     />
                   )}
@@ -117,17 +152,17 @@ const Navbar = () => {
                 {item.subMenu &&
                   item.subMenu.length > 0 &&
                   (activeMenu === index || clickedMenu === index) && (
-                    <ul className="absolute top-full left-0 mt-2 bg-white text-black   rounded shadow-lg min-w-[150px] inline-block h-auto">
+                    <ul className="absolute top-full left-0 mt-2 bg-white text-black rounded shadow-lg min-w-[150px] inline-block h-auto">
                       {item.subMenu.map((subItem, subIndex) => (
                         <li
                           key={subIndex}
                           className="hover:bg-gray-100 py-2 px-4 transition-all duration-75 hover:border-b-[2px] hover:border-green-600"
                         >
                           <NavLink
-                            to="#"
+                            to={subItem.link} // Link added for submenu items
                             className="block text-md whitespace-nowrap"
                           >
-                            {subItem}
+                            {subItem.name}
                           </NavLink>
                         </li>
                       ))}
@@ -142,7 +177,7 @@ const Navbar = () => {
           <span className="text-white py-2 px-3 rounded-full bg-green-700 text-sm">
             +1 (234) 567-890
           </span>
-          <span className="w-[33px] h-[33px]   flex justify-center items-center  rounded-full bg-green-700">
+          <span className="w-[33px] h-[33px] flex justify-center items-center rounded-full bg-green-700">
             <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
           </span>
         </div>
