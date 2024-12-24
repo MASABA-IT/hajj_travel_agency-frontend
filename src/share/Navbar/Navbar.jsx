@@ -3,40 +3,50 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { Link, NavLink } from "react-router-dom";
 import HajjUmrah from "../../assets/logos/hajjUmrah.png";
 import { MdOutlineWhatsapp } from "react-icons/md";
-
+import "./Navbar.css";
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [clickedMenu, setClickedMenu] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu toggle
   const menuRef = useRef(null);
   const [timeoutId, setTimeoutId] = useState(null);
+  const [iconRotation, setIconRotation] = useState(false);
 
   // Define menu items with actual href paths for the submenu items
   const menuItems = [
     {
       name: "Umrah",
+      link: "/umrah", // Added link for Umrah
       subMenu: [
-        { name: "Umrah Packages", link: "/umrah-packages" },
+        { name: "Umrah Packages", link: "/umrah/packages" },
         { name: "Benefit Of Umrah", link: "/benefit-of-umrah" },
         { name: "How To Perform Umrah", link: "/how-to-perform-umrah" },
       ],
     },
     {
       name: "Hajj",
+      link: "/hajj", // Added link for Hajj
       subMenu: [
-        { name: "Sub item 1", link: "/hajj-item-1" },
-        { name: "Sub item 2", link: "/hajj-item-2" },
+        { name: "Hajj Pre Registration", link: "/hajj-item-1" },
+        { name: "Hajj Visa Requirements", link: "/hajj-item-2" },
+        { name: "Hajj Packages 2025", link: "/hajj-item-2" },
       ],
     },
     {
       name: "Facilities",
+      link: "/facilities", // Added link for Facilities
       subMenu: [
-        { name: "Sub item 1", link: "/facilities-item-1" },
-        { name: "Sub item 2", link: "/facilities-item-2" },
+        { name: "Visa Processing", link: "/facilities-item-1" },
+        { name: "Hotel Booking", link: "/facilities-item-2" },
+        { name: "Ziyarat Tours", link: "/facilities-item-2" },
+        { name: "Airline Ticketing", link: "/facilities-item-2" },
+        { name: "Airline Ticketing", link: "/facilities-item-2" },
+        { name: "Umrah Training", link: "/facilities-item-2" },
       ],
     },
     {
       name: "Guidance",
+      link: "/guidance", // Added link for Guidance
       subMenu: [
         { name: "Sub item 1", link: "/guidance-item-1" },
         { name: "Sub item 2", link: "/guidance-item-2" },
@@ -44,6 +54,7 @@ const Navbar = () => {
     },
     {
       name: "Management Board",
+      link: "/management-board", // Added link for Management Board
       subMenu: [
         { name: "Sub item 1", link: "/board-item-1" },
         { name: "Sub item 2", link: "/board-item-2" },
@@ -51,6 +62,7 @@ const Navbar = () => {
     },
     {
       name: "About Us",
+      link: "/about-us", // Added link for About Us
       subMenu: [{ name: "Company Info", link: "/about-us" }],
     },
   ];
@@ -71,6 +83,7 @@ const Navbar = () => {
 
   const handleMenuClick = (index) => {
     setClickedMenu(index === clickedMenu ? null : index);
+    setIconRotation(!iconRotation); // Toggle icon rotation
   };
 
   const handleClickOutside = (event) => {
@@ -132,8 +145,12 @@ const Navbar = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <NavLink
-                  to="#"
-                  className="block text-white transition duration-200"
+                  to={item?.link}
+                  className={({ isActive }) =>
+                    `block text-white transition duration-200 ${
+                      isActive ? "text-[#343f38]" : ""
+                    }`
+                  }
                   onClick={() => handleMenuClick(index)}
                 >
                   <span>{item.name}</span>
@@ -147,7 +164,6 @@ const Navbar = () => {
                     />
                   )}
                 </NavLink>
-
                 {/* Dropdown Menu */}
                 {item.subMenu &&
                   item.subMenu.length > 0 &&
@@ -159,7 +175,7 @@ const Navbar = () => {
                           className="hover:bg-gray-100 py-2 px-4 transition-all duration-75 hover:border-b-[2px] hover:border-green-600"
                         >
                           <NavLink
-                            to={subItem.link} // Link added for submenu items
+                            to={subItem.link} // Link for submenu items
                             className="block text-md whitespace-nowrap"
                           >
                             {subItem.name}
@@ -174,12 +190,15 @@ const Navbar = () => {
         </nav>
 
         <div className="flex justify-center items-center gap-3">
-          <span className="text-white py-2 px-3 rounded-full bg-green-700 text-sm">
-            +1 (234) 567-890
-          </span>
-          <span className="w-[33px] h-[33px] flex justify-center items-center rounded-full bg-green-700">
+          <span className="w-[33px] h-[33px]  flex justify-center items-center rounded-full bg-green-700">
             <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
           </span>
+          <button
+            className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-3 rounded-full text-xl hover:shadow-lg transition-transform duration-300 hover:-translate-y-[2px] active:translate-y-[1px]"
+            style={{ textShadow: "0 2px 19px #24aa86" }}
+          >
+            Login
+          </button>
         </div>
       </div>
     </header>

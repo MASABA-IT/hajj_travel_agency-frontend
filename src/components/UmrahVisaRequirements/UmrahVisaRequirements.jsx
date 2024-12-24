@@ -60,7 +60,7 @@ const UmrahVisaRequirements = () => {
             </li>
           </ul>
           <div className="flex justify-center md:justify-start mt-5">
-            <button className="max-w-[200px] px-6 py-3 bg-[#24aa86] text-white rounded-md shadow-lg hover:bg-[#27725e] transition">
+            <button className="min-w-[200px] px-6 py-3 bg-[#24aa86] text-white rounded-md shadow-lg hover:bg-[#27725e] transition">
               Apply For Visa
             </button>
           </div>

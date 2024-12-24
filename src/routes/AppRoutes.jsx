@@ -6,6 +6,9 @@ import FullPageLoader from "../share/FullPageLoader/FullPageLoader";
 import Home from "../pages/Home/Home";
 import MainLayout from "../layouts/MainLayout";
 import UmrahPackages from "../pages/UmrahPackages/UmrahPackages";
+import Hajj from "../pages/Hajj/Hajj";
+import Facilities from "../pages/Facilities/Facilities";
+import Guidance from "../pages/Guidance/Guidance";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -24,8 +27,20 @@ const AppRoutes = () => {
           element: <Home />,
         },
         {
-          path: "/umrah-packages",
+          path: "/umrah",
           element: <UmrahPackages />,
+        },
+        {
+          path: "/hajj",
+          element: <Hajj />,
+        },
+        {
+          path: "/facilities",
+          element: <Facilities />,
+        },
+        {
+          path: "/guidance",
+          element: <Guidance />,
         },
       ],
     },

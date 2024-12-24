@@ -48,27 +48,27 @@ const OurFaq = () => {
         <h1 className="text-xl md:text-4xl text-[#24aa86] font-bold mb-8">
           Our FAQ
         </h1>
-        <div className="w-full px-4">
+        <div className="w-full md:w-[70%] mx-auto px-4">
           {questionsAndAnswers.map((item, index) => (
             <div key={index} className="mb-4">
-              {/* Question with + or - */}
               <div
                 onClick={() => toggleAnswer(index)}
-                className="cursor-pointer py-3 px-4 bg-[#24aa86] text-white rounded-md shadow-md hover:bg-[#27725e] transition duration-300 flex justify-between items-center"
+                className={` cursor-pointer py-3 px-4   text-gray-800 rounded-md shadow-sm hover:bg-[#27725e] hover:text-white transition duration-300 flex justify-between items-center ${
+                  activeIndex === index ? "bg-[#24aa86] text-white" : "bg-white"
+                } `}
               >
                 <h3 className="text-lg font-semibold">{item.question}</h3>
-                {/* Toggle + or - icon */}
+
                 <span className="text-lg">
                   {activeIndex === index ? "-" : "+"}
                 </span>
               </div>
 
-              {/* Answer */}
               {activeIndex === index && (
                 <div
                   className="transition-all duration-500 ease-in-out overflow-hidden mt-2"
                   style={{
-                    width: activeIndex === index ? "100%" : "0", // Expand width
+                    width: activeIndex === index ? "100%" : "0",
                     paddingTop: "1rem",
                     paddingLeft: "1rem",
                   }}
