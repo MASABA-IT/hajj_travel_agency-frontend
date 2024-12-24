@@ -1,11 +1,57 @@
-.parent:hover img:not(:hover){
-      transform: scale(.96);
-}
-.parent img{
+/* Base Image Styles */
+.parent img {
   outline-offset: 10px;
- 
+  width: 300px; /* Default width for larger screens */
+  height: 300px; /* Default height for larger screens */
+  transition: transform 0.2s, outline 0.2s; /* Smooth transitions */
 }
-.parent img:hover{
+
+/* Hover Effect for Larger Screens */
+.parent img:hover {
   transform: scale(1.05) translateY(-6px);
-   outline: 6px solid #24aa86;
+  outline: 6px solid #24aa86;
+}
+
+/* Mobile-Specific Styles */
+@media (max-width: 768px) {
+  /* Ensure the images are centered and stacked on mobile */
+  .parent {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .parent img {
+    width: 200px; /* Adjust image size for mobile */
+    height: 200px;
+  }
+
+  /* Disable Hover for Mobile Devices */
+  .parent img:hover {
+    transform: scale(1);
+    outline: none;
+  }
+
+  /* Apply Click Outline for Mobile (Using :active) */
+  .parent img:active {
+    outline: 2px solid #24aa86; /* Apply a 2px outline on click */
+    transform: scale(1); /* Optional: Keep image size normal when clicked */
+  }
+
+  /* Ensure Images Stack on Mobile */
+  .parent img:nth-child(1) {
+    top: 8%;
+    left: 8%;
+  }
+
+  .parent img:nth-child(2) {
+    top: 20%;
+    right: 8%;
+  }
+
+  .parent img:nth-child(3) {
+    bottom: 16%;
+    left: 20%;
+  }
 }

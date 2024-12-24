@@ -15,26 +15,26 @@ const AboutUs = () => {
     >
       <div className="max-w-[1400px] min-h-[600px] mx-auto grid grid-cols-1 md:grid-cols-2 py-10">
         {/* Left Side: Images */}
-        <div className="relative w-full h-full parent">
+        <div className=" relative w-full h-full parent">
           <img
             src={leftImg}
             alt="Left Top Image"
-            className="absolute top-10 left-[30%] transform scale-90 w-[300px] h-[300px] object-cover rounded-lg shadow-2xl  hover:z-50  hover:scale-100 transition-all duration-200"
+            className="absolute md:top-10 md:left-[30%] transform scale-90     object-cover rounded-lg shadow-2xl  hover:z-50  hover:scale-100 transition-all duration-200"
           />
           <img
             src={rightImg}
             alt="Right Top Image"
-            className="absolute -right-4 top-[20%] w-[300px] h-[300px] object-cover rounded-lg shadow-2xl   hover:z-50 transform scale-90  hover:scale-100 transition-all duration-200"
+            className="absolute  md:-right-4  md:top-[20%]  object-cover rounded-lg shadow-2xl   hover:z-50 transform scale-90  hover:scale-100 transition-all duration-200"
           />
           <img
             src={bottomImg}
             alt="Bottom Image"
-            className="absolute left-[45%] bottom-0 w-[300px] h-[300px] object-cover rounded-lg shadow-2xl  hover:z-50 transform scale-90  hover:scale-100 transition-all duration-200"
+            className="absolute  md:left-[45%]  md:bottom-0  object-cover rounded-lg shadow-2xl  hover:z-50 transform scale-90  hover:scale-100 transition-all duration-200"
           />
         </div>
 
         {/* Right Side: Text Content */}
-        <div className="flex flex-col justify-center py-8 text-black ml-10">
+        <div className="  md:mt-0 flex flex-col justify-center py-8 text-black ml-10">
           <h2 className="text-xl mb-4 text-[#24aa86]">About Us</h2>
           <h4 className="text-4xl font-semibold mb-4 text-gray-700">
             We are the best <br />
