@@ -1,6 +1,6 @@
 import HeroImg from "../../assets/imgs/umrahHeroSection.png";
 
-const GuidanceHeroContent = () => {
+const SpecialDaeHero = () => {
   return (
     <div className=" max-w-[1400px] mx-auto h-auto ">
       <div
@@ -19,22 +19,17 @@ const GuidanceHeroContent = () => {
           &ndash;Journey of spiritual fulfillment&ndash;
         </p>
         <h2 className="text-xl md:text-2xl text-center text-[#24aa86]">
-          Detailed Umrah guidelines &#124; Step-by-step performing umrah
+          Our listed special Da'e of Hijaz Hajj & Umrah Kafela
         </h2>
         <div className="w-[85%] mx-auto text-center space-y-2 text-gray-700">
           <p>
-            {" "}
-            Undertaking the sacred journey of Umrah is a deeply enriching
-            experience that leaves a lasting impact on the hearts and souls of
-            believers. This holy journey to the blessed cities of Mecca and
-            Medina is a unique opportunity for believers to draw closer to
-            Allah, seek forgiveness, and renew their faith.{" "}
-          </p>
-          <p>
-            It is an opportunity for self-reflection, repentance, and seeking
-            Allah's blessings. This guide by Hijaz Hajj & Umrah Kafela will
-            provide you with essential Umrah guidelines to ensure a smooth and
-            spiritually enriching experience.
+            Experience a profound and transformative Umrah journey with our
+            knowledgeable guide at Hijaz Hajj & Umrah Kafela in Dhaka,
+            Bangladesh. From start to finish, our expert companion ensures
+            seamless navigation, deepening your connection with Allah and
+            enhancing your understanding of sacred rituals. Trust in our
+            guidance for an unforgettable pilgrimage filled with tranquility and
+            spiritual enlightenment.
           </p>
         </div>
         <div className="flex justify-center md:justify-start mt-5">
@@ -47,4 +42,4 @@ const GuidanceHeroContent = () => {
   );
 };
 
-export default GuidanceHeroContent;
+export default SpecialDaeHero;

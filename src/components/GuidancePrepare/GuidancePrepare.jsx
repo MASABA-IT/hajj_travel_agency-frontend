@@ -3,7 +3,7 @@ import GuidanceStep from "../../assets/imgs/GuidanceStep.png";
 const GuidancePrepares = () => {
   return (
     <section className="w-full py-14">
-      <div className="max-w-[1400px] mx-auto flex flex-col-reverse md:flex-row justify-between items-center   px-5 md:px-0">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center   px-5 md:px-0">
         <div className="w-full md:w-1/2 mt-5 md:mt-0 flex justify-center">
           <img
             src={GuidanceStep}
@@ -12,7 +12,7 @@ const GuidancePrepares = () => {
           />
         </div>
         <div className="flex flex-col gap-5 w-full md:w-1/2">
-          <h2 className="text-xl md:text-3xl text-[#24aa86] text-center md:text-left">
+          <h2 className="text-xl md:text-3xl text-[#727066] font-bold text-center md:text-left">
             Preparing for Umrah: Step-by-step guide
           </h2>
           <p className="w-full md:w-3/4 mx-auto md:mx-0 text-center md:text-left">
@@ -22,11 +22,11 @@ const GuidancePrepares = () => {
           </p>
           <ul className="list-inside pl-5 space-y-3">
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>The Niyyah</span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>
                 Before embarking on the sacred pilgrimage of Umrah, Muslims are
                 encouraged to set their hearts on the profound act of Niyyah, or
@@ -36,11 +36,11 @@ const GuidancePrepares = () => {
               </span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>Attaining a state of Ihram</span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>
                 Before commencing the journey, pilgrims must enter the state of
                 Ihram, a sacred state of purity and devotion. This involves
@@ -51,11 +51,11 @@ const GuidancePrepares = () => {
               </span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>Reciting Talbiyah</span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>
                 Talbiyah is a profound and sacred invocation recited by Muslims
                 during the pilgrimage of Hajj and Umrah. Derived from the Arabic
@@ -65,7 +65,7 @@ const GuidancePrepares = () => {
               </span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>
                 Talbiya is, لَبَّيْكَ اللهُمَّ لَبَّيْكَ - لَبَّيْكَ لَا
                 شَرِيْكَ لَكَ لَبَّيْكَ - إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ
@@ -75,11 +75,11 @@ const GuidancePrepares = () => {
               </span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>Engaging in spiritual preparation</span>
             </li>
             <li className="flex items-center space-x-3">
-              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#24aa86] rounded-full"></span>
+              <span className="flex justify-center items-center w-2 h-2 p-[2px] bg-white border-2 border-[#727066] rounded-full"></span>
               <span>
                 Preparing for Umrah requires more than just physical
                 arrangements. Pilgrims are encouraged to engage in spiritual

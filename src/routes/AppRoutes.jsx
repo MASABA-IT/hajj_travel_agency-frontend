@@ -9,6 +9,7 @@ import UmrahPackages from "../pages/UmrahPackages/UmrahPackages";
 import Hajj from "../pages/Hajj/Hajj";
 import Facilities from "../pages/Facilities/Facilities";
 import Guidance from "../pages/Guidance/Guidance";
+import ManagementBoard from "../components/ManagementBoard/ManagementBoard";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,10 @@ const AppRoutes = () => {
         {
           path: "/guidance",
           element: <Guidance />,
+        },
+        {
+          path: "/management-board",
+          element: <ManagementBoard />,
         },
       ],
     },

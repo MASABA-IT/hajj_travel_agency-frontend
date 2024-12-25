@@ -2,7 +2,7 @@ import HeroImg from "../../assets/imgs/umrahHeroSection.png";
 
 const HajjHeroContent = () => {
   return (
-    <div className=" max-w-[1400px] mx-auto h-auto ">
+    <section className=" max-w-[1400px] mx-auto h-auto ">
       <div
         className="w-[90%] md:w-full mx-auto bg-cover h-[400px] rounded-sm"
         style={{
@@ -32,7 +32,7 @@ const HajjHeroContent = () => {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

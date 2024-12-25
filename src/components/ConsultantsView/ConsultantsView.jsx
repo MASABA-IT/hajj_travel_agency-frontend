@@ -21,7 +21,7 @@ const ConsultantsView = () => {
         <div className="flex-1 flex flex-col items-center gap-2  md:items-start text-center md:text-start">
           <h1
             className="text-2xl  md:text-5xl font-bold text-[#24aa86] "
-            style={{ textShadow: "0 2px 4px #d3be97" }}
+            style={{ textShadow: "0 2px 80px #999" }}
           >
             Our distinguished Shariah consultants
           </h1>

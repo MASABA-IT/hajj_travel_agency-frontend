@@ -1,16 +1,9 @@
-import caliography from "../../assets/imgs/Caliography.png";
 import hajjVisaReq from "../../assets/imgs/hajjVisaReq.png";
 
-const HajjVisaReq = () => {
+const GuidanceGoal = () => {
   return (
-    <section
-      className="w-full bg-cover py-14"
-      style={{
-        backgroundImage: `url(${caliography})`,
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="max-w-[1400px] mx-auto flex flex-col-reverse md:flex-row justify-between items-center bg-red-20 px-5 md:px-0">
+    <section className="w-full   py-14">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center bg-red-20 px-5 md:px-0">
         <div className="w-full md:w-1/2 mt-5 md:mt-0 flex justify-center ">
           <img
             src={hajjVisaReq}
@@ -19,8 +12,8 @@ const HajjVisaReq = () => {
           />
         </div>
         <div className="flex flex-col gap-5 w-full md:w-1/2">
-          <h2 className="text-xl md:text-3xl text-[#727066] text-center md:text-left">
-            Hajj pre-registration 2025 process from Dhaka, Bangladesh
+          <h2 className="text-xl md:text-3xl text-[#727066] font-bold  text-center md:text-left">
+            Umrah: A journey of a lifetime
           </h2>
           <p className="w-full md:w-3/4 mx-auto md:mx-0 text-center md:text-left">
             As a Bangladeshi citizen, you will need to fulfill certain
@@ -66,4 +59,4 @@ const HajjVisaReq = () => {
   );
 };
 
-export default HajjVisaReq;
+export default GuidanceGoal;

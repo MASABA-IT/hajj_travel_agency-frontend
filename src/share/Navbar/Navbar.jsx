@@ -48,16 +48,20 @@ const Navbar = () => {
       name: "Guidance",
       link: "/guidance", // Added link for Guidance
       subMenu: [
-        { name: "Sub item 1", link: "/guidance-item-1" },
-        { name: "Sub item 2", link: "/guidance-item-2" },
+        { name: "Umrah Guideline In English", link: "/guidance-item-1" },
+        { name: "Umrah Guideline in Bangla", link: "/guidance-item-2" },
       ],
     },
     {
       name: "Management Board",
       link: "/management-board", // Added link for Management Board
       subMenu: [
-        { name: "Sub item 1", link: "/board-item-1" },
-        { name: "Sub item 2", link: "/board-item-2" },
+        { name: "Special Da'e", link: "/" },
+        { name: "Umrah Guides", link: "/board-item-2" },
+        { name: "Sharia Consultant", link: "/board-item-1" },
+        { name: "Business Associate", link: "/board-item-2" },
+        { name: "Flagship Agency", link: "/board-item-1" },
+        { name: "Board Of Director", link: "/board-item-2" },
       ],
     },
     {
