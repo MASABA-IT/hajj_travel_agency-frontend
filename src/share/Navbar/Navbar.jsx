@@ -18,9 +18,10 @@ const Navbar = () => {
       name: "Umrah",
       link: "/umrah", // Added link for Umrah
       subMenu: [
-        { name: "Umrah Packages", link: "/umrah/packages" },
-        { name: "Benefit Of Umrah", link: "/benefit-of-umrah" },
-        { name: "How To Perform Umrah", link: "/how-to-perform-umrah" },
+        { name: "Umrah Packages", link: "/umrah" },
+        { name: "Benefit Of Umrah", link: "/umrah/benefit-of-umrah" },
+        { name: "How To Perform Umrah", link: "/umrah/how-to-perform-umrah" },
+        { name: "Umrah Visa Requirement", link: "/umrah-visa-requirement" },
       ],
     },
     {

@@ -296,7 +296,7 @@ const HajjPackagesDetails = () => {
       }}
     >
       <div className="max-w-[1400px] mx-auto px-4">
-        <h1 className="text-3xl md:text-5xl text-center mb-8">
+        <h1 className="text-3xl md:text-3xl text-center mb-8 text-[#24aa86] font-bold">
           Our Hajj, Umrah & Travel Packages
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

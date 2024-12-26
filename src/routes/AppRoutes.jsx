@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Suspense, useEffect } from "react";
 import { startLoading, stopLoading } from "../store/slices/loadingSlice";
 import FullPageLoader from "../share/FullPageLoader/FullPageLoader";
@@ -10,6 +10,11 @@ import Hajj from "../pages/Hajj/Hajj";
 import Facilities from "../pages/Facilities/Facilities";
 import Guidance from "../pages/Guidance/Guidance";
 import ManagementBoard from "../components/ManagementBoard/ManagementBoard";
+import AboutUsPage from "../pages/AboutUsPage/AboutUsPage";
+import AppointmentPage from "../pages/AppointmentPage/AppointmentPage";
+import BenefitOfUmrah from "../pages/BenefitOfUmrah/BenefitOfUmrah";
+import UmrahLayout from "../layouts/UmrahLayout";
+import UmrahPerform from "../pages/UmrahPerform/UmrahPerform";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -29,7 +34,21 @@ const AppRoutes = () => {
         },
         {
           path: "/umrah",
-          element: <UmrahPackages />,
+          element: <UmrahLayout />,
+          children: [
+            {
+              path: "",
+              element: <UmrahPackages />,
+            },
+            {
+              path: "benefit-of-umrah",
+              element: <BenefitOfUmrah />,
+            },
+            {
+              path: "how-to-perform-umrah",
+              element: <UmrahPerform />,
+            },
+          ],
         },
         {
           path: "/hajj",
@@ -46,6 +65,14 @@ const AppRoutes = () => {
         {
           path: "/management-board",
           element: <ManagementBoard />,
+        },
+        {
+          path: "/about-us",
+          element: <AboutUsPage />,
+        },
+        {
+          path: "/umrah-appointment",
+          element: <AppointmentPage />,
         },
       ],
     },

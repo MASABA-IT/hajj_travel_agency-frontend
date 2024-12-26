@@ -133,9 +133,9 @@ const TrustpilotReviews = () => {
           {userData.map((user, index) => (
             <div
               key={user?.id}
-              className="w-[90%] md:w-full mx-auto bg-gray-50 p-4  shadow-md flex justify-center items-center border-r-[2.5px] border-gray-400"
+              className="w-[90%] md:w-full mx-auto bg-gray-50 p-4 flex justify-center items-center border-r-[2.5px] border-gray-400 transition-shadow duration-200"
             >
-              <div className="w-full grid grid-cols-5 grid-rows-[auto,auto,auto,auto]">
+              <div className="w-full grid gri d-cols-5 grid-rows-[auto,auto,auto,auto]">
                 <div className="col-span-1 row-span-2 flex items-center justify-center">
                   <img
                     className="w-10 h-10 rounded-full"
