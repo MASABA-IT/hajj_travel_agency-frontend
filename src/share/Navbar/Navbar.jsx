@@ -145,7 +145,7 @@ const Navbar = () => {
             {menuItems.map((item, index) => (
               <li
                 key={index}
-                className="relative px-3"
+                className="relative px-3 "
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
               >

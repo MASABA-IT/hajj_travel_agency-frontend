@@ -112,7 +112,7 @@ const TrustpilotReviews = () => {
   ];
 
   return (
-    <section className="w-full   py-14 bg-slate-50">
+    <section className="w-full   py-14 bg-[#f2f2f2]">
       <div className="max-w-[1400px] mx-auto flex justify-center items-center flex-col space-y-10">
         <h2 className="text-xl md:text-3xl font-bold text-zinc-700">
           Import Your Trustpilot Reviews Now!
