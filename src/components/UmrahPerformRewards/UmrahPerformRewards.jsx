@@ -26,7 +26,7 @@ const UmrahPerformRewards = () => {
           <p className="w-full md:w-3/4 mx-auto md:mx-0 text-center md:text-left">
             Embarking on the sacred pilgrimage of Umrah offers a multitude of
             rewards and blessings that touch the heart, purify the soul, and
-            strengthen one's connection with Allah.
+            strengthen one&apos;s connection with Allah.
           </p>
           <ul className="list-inside pl-5 space-y-3">
             <li className="flex items-center">
