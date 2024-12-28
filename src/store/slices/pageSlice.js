@@ -422,7 +422,7 @@ const initialState = {
           description:
             "Applying for a Hajj visa from Bangladesh involves several steps, and it's essential to follow the process carefully to ensure a successful application. Here's a guideline on how to apply for a Hajj visa from Bangladesh:",
           list: [null],
-           subList: {
+          subList: {
             hasSubList: true,
             childList: [
               {
@@ -457,15 +457,24 @@ const initialState = {
           title: "Tips for a smooth Hajj visa acquisition",
           description:
             "Securing your Hajj visa is a crucial step toward your spiritual journey. To ensure a seamless visa acquisition process, consider the following tips:",
-          list: [ "Early application","Choose a reputable agency","Accurate documentation","Comply with regulations","Financial preparedness","Stay updated","Patience and flexibility","Consult with experts","Follow up"],
-           subList: {
+          list: [
+            "Early application",
+            "Choose a reputable agency",
+            "Accurate documentation",
+            "Comply with regulations",
+            "Financial preparedness",
+            "Stay updated",
+            "Patience and flexibility",
+            "Consult with experts",
+            "Follow up",
+          ],
+          subList: {
             hasSubList: false,
             childList: [
               {
                 text: " ",
-                list: [  ],
+                list: [],
               },
-              
             ],
           },
           buttonText: "Apply For Visa",
@@ -473,6 +482,54 @@ const initialState = {
       },
     },
   },
+  TravelList: [
+    {
+      main: {
+        smallText: "",
+        heading: "",
+        areas: [""],
+      },
+      umrah: {
+        packages: {
+          smallText: "",
+          heading: "",
+          areas: [""],
+        },
+        benefits: {
+          smallText: "",
+          heading: "",
+          areas: [""],
+        },
+        perform: {
+          smallText: "",
+          heading: "",
+          areas: [""],
+        },
+        visaReq: {
+          smallText: "",
+          heading: "",
+          areas: [""],
+        },
+      },
+      hajj: {
+        preReg: {
+          smallText: "",
+          heading: "",
+          areas: [""],
+        },
+        visaReq: {
+          smallText: "",
+          heading: "",
+          areas: [""],
+        },
+        hajjPackage: {
+          smallText: "",
+          heading: "",
+          areas: [""],
+        },
+      },
+    },
+  ],
 };
 
 // Reducer Slice
