@@ -15,6 +15,10 @@ import AppointmentPage from "../pages/AppointmentPage/AppointmentPage";
 import BenefitOfUmrah from "../pages/BenefitOfUmrah/BenefitOfUmrah";
 import UmrahLayout from "../layouts/UmrahLayout";
 import UmrahPerform from "../pages/UmrahPerform/UmrahPerform";
+import UmrahVisaRequirements from "../pages/UmrahVisaRequirements/UmrahVisaRequirements";
+import HajjLayout from "../layouts/HajjLayout";
+import HajjVisaRequirements from "../pages/HajjVisaRequirements/HajjVisaRequirements";
+import HajjPackage from "../pages/HajjPackage/HajjPackage";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -48,11 +52,29 @@ const AppRoutes = () => {
               path: "how-to-perform-umrah",
               element: <UmrahPerform />,
             },
+            {
+              path: "umrah-visa-requirement",
+              element: <UmrahVisaRequirements />,
+            },
           ],
         },
         {
           path: "/hajj",
-          element: <Hajj />,
+          element: <HajjLayout />,
+          children: [
+            {
+              path: "",
+              element: <Hajj />,
+            },
+            {
+              path: "hajj-visa-requirements",
+              element: <HajjVisaRequirements />,
+            },
+            {
+              path: "hajj-package",
+              element: <HajjPackage />,
+            },
+          ],
         },
         {
           path: "/facilities",

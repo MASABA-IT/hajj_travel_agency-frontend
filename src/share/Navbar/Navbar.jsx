@@ -21,16 +21,19 @@ const Navbar = () => {
         { name: "Umrah Packages", link: "/umrah" },
         { name: "Benefit Of Umrah", link: "/umrah/benefit-of-umrah" },
         { name: "How To Perform Umrah", link: "/umrah/how-to-perform-umrah" },
-        { name: "Umrah Visa Requirement", link: "/umrah-visa-requirement" },
+        {
+          name: "Umrah Visa Requirement",
+          link: "/umrah/umrah-visa-requirement",
+        },
       ],
     },
     {
       name: "Hajj",
       link: "/hajj", // Added link for Hajj
       subMenu: [
-        { name: "Hajj Pre Registration", link: "/hajj-item-1" },
-        { name: "Hajj Visa Requirements", link: "/hajj-item-2" },
-        { name: "Hajj Packages 2025", link: "/hajj-item-2" },
+        { name: "Hajj Pre Registration", link: "/hajj" },
+        { name: "Hajj Visa Requirements", link: "/hajj/hajj-visa-requirements" },
+        { name: "Hajj Packages 2025", link: "/hajj/hajj-package" },
       ],
     },
     {

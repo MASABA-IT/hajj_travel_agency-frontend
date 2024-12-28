@@ -32,7 +32,7 @@ const GuidanceHeroContent = () => {
           </p>
           <p>
             It is an opportunity for self-reflection, repentance, and seeking
-            Allah's blessings. This guide by Hijaz Hajj & Umrah Kafela will
+            Allah&apos;s blessings. This guide by Hijaz Hajj & Umrah Kafela will
             provide you with essential Umrah guidelines to ensure a smooth and
             spiritually enriching experience.
           </p>

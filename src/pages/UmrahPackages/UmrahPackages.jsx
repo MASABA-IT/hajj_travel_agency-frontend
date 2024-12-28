@@ -7,6 +7,7 @@ import UmrahHeroSection from "../../components/UmrahHeroSection/UmrahHeroSection
 
 import ContentImg from "../../components/ReComponent/ContentImg/ContentImg";
 import ImgContent from "../../components/ReComponent/ImgContent/ImgContent";
+import ComponentChange from "../../share/ComponentChange/ComponentChange";
 
 const UmrahPackages = () => {
   return (
@@ -15,10 +16,10 @@ const UmrahPackages = () => {
       <HajjPackagesDetails />
       <UmrahGroupService />
       {/* visaRequirement */}
-      <ContentImg page="Package" section="requirements" />
-      <div className="max-w-[1400px] mx-auto h-[3px] bg-gray-300"></div>
+      <ContentImg page="umrah" section="Package" itemKey="requirements" />
+      <ComponentChange />
       {/* UmrahPerformRewards  */}
-      <ImgContent page="Package" section="rewards" />
+      <ImgContent page="umrah" section="Package" itemKey="rewards" />
       {/* <UmrahPerformRewards /> */}
       <TravelHelpSupport />
       <OurFaq />
