@@ -19,39 +19,19 @@ const BenefitOfUmrah = () => {
       <ContentImg page="umrah" section="Benefits" itemKey="benefit" />
       <ComponentChange />
       {/* journey */}
-      <ImgContent
-        page="umrah"
-        section="Benefits"
-        itemKey="umrahJourney"
-      />
+      <ImgContent page="umrah" section="Benefits" itemKey="umrahJourney" />
       <ComponentChange />
       {/* personal */}
-      <ContentImg
-        page="umrah"
-        section="Benefits"
-        itemKey="personalBenefit"
-      />
+      <ContentImg page="umrah" section="Benefits" itemKey="personalBenefit" />
       <ComponentChange />
       {/* social */}
-      <ImgContent
-        page="umrah"
-        section="Benefits"
-        itemKey="socialBenefit"
-      />
+      <ImgContent page="umrah" section="Benefits" itemKey="socialBenefit" />
       <ComponentChange />
       {/* Health benefits */}
-      <ContentImg
-        page="umrah"
-        section="Benefits"
-        itemKey="healthBenefit"
-      />
+      <ContentImg page="umrah" section="Benefits" itemKey="healthBenefit" />
       <ComponentChange />
       {/* benefitAndRewards */}
-      <ImgContent
-        page="umrah"
-        section="Benefits"
-        itemKey="benefitAndRewards"
-      />
+      <ImgContent page="umrah" section="Benefits" itemKey="benefitAndRewards" />
 
       <TravelHelpSupport />
       <OurFaq />

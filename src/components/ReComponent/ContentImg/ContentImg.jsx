@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import FullPageLoader from "../../../share/FullPageLoader/FullPageLoader";
 
 const ContentImg = ({ page, section, itemKey }) => {
-  const pageData = useSelector(
-    (state) => state.page.pages?.[page]?.[section]?.[itemKey] || null
+   const pageData = useSelector(
+    (state) => state?.[page]?.[page]?.[section]?.[itemKey] || null
   );
+  console.log("page", pageData);
 
   if (!pageData) {
     return <FullPageLoader />;

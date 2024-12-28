@@ -4,7 +4,7 @@ import FullPageLoader from "../../../share/FullPageLoader/FullPageLoader";
 
 const ImgContent = ({ page, section, itemKey }) => {
   const pageData = useSelector(
-    (state) => state.page.pages?.[page]?.[section]?.[itemKey] || null
+    (state) => state?.[page]?.[page]?.[section]?.[itemKey] || null
   );
 
   if (!pageData) {

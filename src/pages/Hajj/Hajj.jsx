@@ -12,9 +12,7 @@ const Hajj = () => {
       <HajjHeroContent />
       <ContentImg page="hajj" section="PreReg" itemKey="preReg" />
       <ComponentChange />
-
       <ImgContent page="hajj" section="PreReg" itemKey="regPro" />
-
       <HajjApply />
       <TravelHelpSupport />
       <OurFaq />
