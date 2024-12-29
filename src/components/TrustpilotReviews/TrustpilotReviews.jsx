@@ -112,7 +112,7 @@ const TrustpilotReviews = () => {
   ];
 
   return (
-    <section className="w-full   py-14 bg-[#f2f2f2]">
+    <section className="w-full   py-14 bg-[#24aa860e]">
       <div className="max-w-[1400px] mx-auto flex justify-center items-center flex-col space-y-10">
         <h2 className="text-xl md:text-3xl font-bold text-zinc-700">
           Import Your Trustpilot Reviews Now!
@@ -125,7 +125,7 @@ const TrustpilotReviews = () => {
           <button className="max-w-[200px] text-zinc-100 px-4 py-2 md:px-6 md:py-3 bg-[#24aa86] text-sm md:text-lg rounded-md shadow-lg hover:bg-[#27725e] transition">
             Get all Reviews
           </button>
-          <button className="max-w-[200px] text-zinc-100 px-4 py-2 md:px-6 md:py-3 bg-[#24aa86] text-sm md:text-lg rounded-md shadow-lg hover:bg-gray-50 transition-all border hover:border-[#24aa86] hover:text-zinc-800   duration-75">
+          <button className="max-w-[200px] text-zinc-800 px-4 py-2 md:px-6 md:py-3   text-sm md:text-lg rounded-md shadow-lg  bg-gray-50 transition-all border hover:border-[#24aa86] hover:text-zinc-800   duration-75">
             Explore
           </button>
         </div>
@@ -133,12 +133,12 @@ const TrustpilotReviews = () => {
           {userData.map((user, index) => (
             <div
               key={user?.id}
-              className="w-[90%] md:w-full mx-auto bg-gray-50 p-4 flex justify-center items-center border-r-[2.5px] border-gray-400 transition-shadow duration-200"
+              className="w-[90%] md:w-full mx-auto bg-white p-4 flex justify-center items-center border-r-[2.5px] border-r-[#57c09d52]   transition-shadow duration-200"
             >
               <div className="w-full grid gri d-cols-5 grid-rows-[auto,auto,auto,auto]">
                 <div className="col-span-1 row-span-2 flex items-center justify-center">
                   <img
-                    className="w-10 h-10 rounded-full"
+                    className="w-10 h-10 mr-2 rounded-full"
                     src={user?.img}
                     alt="user img"
                   />
@@ -152,15 +152,16 @@ const TrustpilotReviews = () => {
                   {Array.from({ length: 5 }).map((_, index) => (
                     <span
                       key={index}
-                      className={`h-[22px] w-[18px] px-[2px] rounded-md text-4xl ${
+                      className={`h-[22px] w-[22px]   rounded-full text-3xl flex justify-center border  ${
                         user?.rating === 1 && index === 0
                           ? "bg-red-500 text-white"
                           : user?.rating >= 1
                           ? index < user?.rating
                             ? "bg-[#24aa86] text-white"
-                            : "bg-gray-300 text-gray-500"
-                          : "bg-gray-300 text-gray-500"
+                            : "bg-white text-gray-500"
+                          : "bg-white text-gray-500"
                       }`}
+                      style={{ textShadow: "0 2px 2px #777" }}
                     >
                       *
                     </span>
