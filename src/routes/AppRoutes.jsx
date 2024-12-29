@@ -19,6 +19,13 @@ import UmrahVisaRequirements from "../pages/UmrahVisaRequirements/UmrahVisaRequi
 import HajjLayout from "../layouts/HajjLayout";
 import HajjVisaRequirements from "../pages/HajjVisaRequirements/HajjVisaRequirements";
 import HajjPackage from "../pages/HajjPackage/HajjPackage";
+import HotelBooking from "../pages/HotelBooking/HotelBooking";
+import ZiyaratTours from "../pages/ZiyaratTours/ZiyaratTours";
+import AirlineTicketing from "../pages/AirlineTicketing/AirlineTicketing";
+import UmrahTraining from "../pages/UmrahTraining/UmrahTraining";
+import FacilitiesLayout from "../layouts/FacilitiesLayout";
+import GuidanceLayout from "../layouts/GuidanceLayout";
+import GuidanceBangla from "../pages/GuidanceBangla/GuidanceBangla";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -78,11 +85,51 @@ const AppRoutes = () => {
         },
         {
           path: "/facilities",
-          element: <Facilities />,
+          element: <FacilitiesLayout />,
+          children: [
+            {
+              path: "",
+              element: <Facilities />,
+            },
+            {
+              path: "visa-processing",
+              element: <Facilities />,
+            },
+            {
+              path: "hotel-booking",
+              element: <HotelBooking />,
+            },
+            {
+              path: "ziyarat-tours",
+              element: <ZiyaratTours />,
+            },
+            {
+              path: "airline-ticketing",
+              element: <AirlineTicketing />,
+            },
+            {
+              path: "umrah-training",
+              element: <UmrahTraining />,
+            },
+          ],
         },
         {
           path: "/guidance",
-          element: <Guidance />,
+          element: <GuidanceLayout />,
+          children: [
+            {
+              path: "",
+              element: <Guidance />,
+            },
+            {
+              path: "guidance-english",
+              element: <Guidance />,
+            },
+            {
+              path: "guidance-bangla",
+              element: <GuidanceBangla />,
+            },
+          ],
         },
         {
           path: "/management-board",

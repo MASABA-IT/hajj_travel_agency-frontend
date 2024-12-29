@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useSelector } from "react-redux"; // Import useSelector from Redux
+import { useSelector } from "react-redux";
 import FullPageLoader from "../../../share/FullPageLoader/FullPageLoader";
 
 const ImgContent = ({ page, section, itemKey }) => {
   const pageData = useSelector(
-    (state) => state?.[page]?.[page]?.[section]?.[itemKey] || null
+    (state) => state?.[page]?.[section]?.[itemKey] || null
   );
-
+  console.log(pageData);
   if (!pageData) {
     return <FullPageLoader />;
   }
@@ -27,9 +27,26 @@ const ImgContent = ({ page, section, itemKey }) => {
     );
   };
 
+  const renderSubList = (subList) => {
+    return (
+      <div className="">
+        {subList?.childList?.map((subItem, index) => (
+          <div key={index} className="mt-6">
+            <h3 className="text-lg text-[#24aa86]">{subItem.text}</h3>
+            {renderList(subItem.list)}
+          </div>
+        ))}
+      </div>
+    );
+  };
+  const list = pageData.list?.filter((item) => item != null) || []; // filter out null items
+
+  const hasSubList =
+    pageData.subList?.hasSubList && pageData.subList.childList?.length > 0;
   const hasValidList =
-    pageData.list &&
-    pageData.list.some((item) => item !== null && item !== undefined);
+    list.length > 0 ||
+    (hasSubList &&
+      pageData.subList.childList?.some((subItem) => subItem.list?.length > 0));
 
   return (
     <section
@@ -56,20 +73,11 @@ const ImgContent = ({ page, section, itemKey }) => {
             {pageData.description}
           </p>
 
-          {/* Conditional rendering: Check if list has valid items */}
           {hasValidList
             ? renderList(pageData.list)
             : pageData.subList?.hasSubList &&
-              pageData.subList.childList?.length > 0 && (
-                <div className="mt-8">
-                  {pageData.subList.childList?.map((subItem, index) => (
-                    <div key={index} className="mt-6">
-                      <h3 className="text-lg text-[#24aa86]">{subItem.text}</h3>
-                      {renderList(subItem.list)}
-                    </div>
-                  ))}
-                </div>
-              )}
+              pageData.subList.childList?.length > 0 &&
+              renderSubList(pageData.subList)}
 
           <div className="flex justify-center md:justify-start mt-5">
             <button className="min-w-[200px] px-6 py-3 bg-[#5a584f] text-white rounded-md shadow-lg hover:bg-[#3f3e38] transition">

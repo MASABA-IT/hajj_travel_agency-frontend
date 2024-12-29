@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
 import FullPageLoader from "../../../share/FullPageLoader/FullPageLoader";
+import { VscDebugBreakpointData } from "react-icons/vsc";
 
 const ContentImg = ({ page, section, itemKey }) => {
-   const pageData = useSelector(
-    (state) => state?.[page]?.[page]?.[section]?.[itemKey] || null
+  const pageData = useSelector(
+    (state) => state?.[page]?.[section]?.[itemKey] || null
   );
   console.log("page", pageData);
 
@@ -15,6 +16,14 @@ const ContentImg = ({ page, section, itemKey }) => {
   // Handle the case where bgImg or list might be null or empty
   const bgImage = pageData.bgImg || ""; // fallback to empty string if bgImg is null
   const list = pageData.list?.filter((item) => item != null) || []; // filter out null items
+
+  // Check if the list has valid items
+  const hasSubList =
+    pageData.subList?.hasSubList && pageData.subList.childList?.length > 0;
+  const hasValidList =
+    list.length > 0 ||
+    (hasSubList &&
+      pageData.subList.childList?.some((subItem) => subItem.list?.length > 0));
 
   const renderList = (list) => {
     return (
@@ -33,10 +42,13 @@ const ContentImg = ({ page, section, itemKey }) => {
 
   const renderSubList = (subList) => {
     return (
-      <div className="mt-8">
+      <div className="">
         {subList?.childList?.map((subItem, index) => (
           <div key={index} className="mt-6">
-            <h3 className="text-lg text-[#24aa86]">{subItem.text}</h3>
+            <h3 className="text-lg text-[#24aa86]">
+              <VscDebugBreakpointData className="inline-block mr-2" />
+              {subItem.text}
+            </h3>
             {renderList(subItem.list)}
           </div>
         ))}
@@ -62,12 +74,14 @@ const ContentImg = ({ page, section, itemKey }) => {
             {pageData.description}
           </p>
 
-          {/* Conditional rendering: Check if list has items */}
-          {list.length > 0
-            ? renderList(list)
-            : pageData.subList?.hasSubList &&
-              pageData.subList.childList?.length > 0
-            ? renderSubList(pageData.subList)
+          {/* Conditional rendering: Check if list has valid items */}
+          {hasValidList
+            ? list.length > 0
+              ? renderList(list)
+              : pageData.subList?.hasSubList &&
+                pageData.subList.childList?.length > 0
+              ? renderSubList(pageData.subList)
+              : null
             : null}
 
           <div className="flex justify-center md:justify-start mt-5">

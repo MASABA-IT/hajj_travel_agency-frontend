@@ -29,7 +29,7 @@ const HajjPackagePriceView = () => {
           </p>
 
           <button className="min-w-[200px] px-6 py-3 font-bold bg-[#fff] text-[#24aa86] rounded-md shadow-lg hover:bg-[#f2f2f2] transition">
-            View Price
+            View Pricing
           </button>
         </div>
       </div>

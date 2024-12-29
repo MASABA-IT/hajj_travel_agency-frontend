@@ -6,12 +6,11 @@ import OurFaq from "../../components/OurFaq/OurFaq";
 const Facilities = () => {
   return (
     <div className=" h-auto mt-28">
-       <FacilitiesHeroContent/>
-       <HajjPreRegInfo />
+      <FacilitiesHeroContent />
+      <HajjPreRegInfo />
       <HajjVisaReq />
       <HajjPreRegInfo />
- 
-      <OurFaq/>
+      <OurFaq />
     </div>
   );
 };

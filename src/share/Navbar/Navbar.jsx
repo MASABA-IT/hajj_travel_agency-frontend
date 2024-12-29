@@ -29,36 +29,38 @@ const Navbar = () => {
     },
     {
       name: "Hajj",
-      link: "/hajj", // Added link for Hajj
+      link: "/hajj",
       subMenu: [
         { name: "Hajj Pre Registration", link: "/hajj" },
-        { name: "Hajj Visa Requirements", link: "/hajj/hajj-visa-requirements" },
+        {
+          name: "Hajj Visa Requirements",
+          link: "/hajj/hajj-visa-requirements",
+        },
         { name: "Hajj Packages 2025", link: "/hajj/hajj-package" },
       ],
     },
     {
       name: "Facilities",
-      link: "/facilities", // Added link for Facilities
+      link: "/facilities",
       subMenu: [
-        { name: "Visa Processing", link: "/facilities-item-1" },
-        { name: "Hotel Booking", link: "/facilities-item-2" },
-        { name: "Ziyarat Tours", link: "/facilities-item-2" },
-        { name: "Airline Ticketing", link: "/facilities-item-2" },
-        { name: "Airline Ticketing", link: "/facilities-item-2" },
-        { name: "Umrah Training", link: "/facilities-item-2" },
+        { name: "Visa Processing", link: "/facilities/visa-processing" },
+        { name: "Hotel Booking", link: "/facilities/hotel-booking" },
+        { name: "Ziyarat Tours", link: "/facilities/ziyarat-tours" },
+        { name: "Airline Ticketing", link: "/facilities/airline-ticketing" },
+        { name: "Umrah Training", link: "/facilities/umrah-training" },
       ],
     },
     {
       name: "Guidance",
-      link: "/guidance", // Added link for Guidance
+      link: "/guidance",
       subMenu: [
-        { name: "Umrah Guideline In English", link: "/guidance-item-1" },
-        { name: "Umrah Guideline in Bangla", link: "/guidance-item-2" },
+        { name: "Umrah Guideline In English", link: "/guidance/guidance-english" },
+        { name: "Umrah Guideline in Bangla", link: "/guidance/guidance-bangla" },
       ],
     },
     {
       name: "Management Board",
-      link: "/management-board", // Added link for Management Board
+      link: "/management-board",
       subMenu: [
         { name: "Special Da'e", link: "/" },
         { name: "Umrah Guides", link: "/board-item-2" },
@@ -202,8 +204,8 @@ const Navbar = () => {
             <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
           </span>
           <button
-            className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-3 rounded-full text-xl hover:shadow-lg transition-transform duration-300 hover:-translate-y-[2px] active:translate-y-[1px]"
-            style={{ textShadow: "0 2px 19px #24aa86" }}
+            className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-4 rounded-full text-xl font-medium shadow-md hover:shadow-md transition-all duration-300 transform hover:scale-105  active:scale-95"
+            style={{ textShadow: "0 2px 15px rgba(36, 170, 134, 0.2)" }}
           >
             Login
           </button>
