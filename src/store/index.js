@@ -5,7 +5,9 @@ import umrahReducer from "./slices/umrahSlice";
 import hajjReducer from "./slices/hajjSlice";
 import facilitiesReducer from "./slices/facilitiesSlice";
 import guidanceReducer from "./slices/guidanceSlice";
-
+import managementReducer from "./slices/managementSlice";
+import locationReducer from "./slices/locationSlice";
+import faqReducer from "./slices/pageFaqDataSlice";
 const store = configureStore({
   reducer: {
     loading: loadingReducer,
@@ -14,6 +16,9 @@ const store = configureStore({
     hajj: hajjReducer,
     facilities: facilitiesReducer,
     guidance: guidanceReducer,
+    management: managementReducer,
+    location: locationReducer,
+    faq: faqReducer,
   },
 });
 

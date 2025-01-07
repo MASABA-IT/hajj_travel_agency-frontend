@@ -116,12 +116,12 @@ const Footer = () => {
 
         {/* 3rd Row: Copyright + Legal Section */}
         <div className="border-t border-white pt-4 mt-8">
-          <div className="flex justify-between items-center">
-            <p className="text-white text-sm">
-              Copyright @2024, <span className="font-semibold">MASABA</span> All
+          <div className="flex justify-between  flex-wrap-reverse md:flex-row items-center gap-5">
+            <p className=" w-full md:w-auto text-white text-sm text-center">
+              Copyright @2024, <span className="font-semibold ">MASABA</span> All
               Rights Reserved
             </p>
-            <ul className="flex space-x-6 text-white text-sm">
+            <ul className="w-full md:w-auto flex justify-center  items-center   space-x-6   text-white text-sm ">
               <li>Terms of Use</li>
               <li>Privacy Policy</li>
               <li>FAQ</li>

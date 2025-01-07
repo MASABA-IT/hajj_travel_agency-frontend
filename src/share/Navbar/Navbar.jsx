@@ -54,20 +54,35 @@ const Navbar = () => {
       name: "Guidance",
       link: "/guidance",
       subMenu: [
-        { name: "Umrah Guideline In English", link: "/guidance/guidance-english" },
-        { name: "Umrah Guideline in Bangla", link: "/guidance/guidance-bangla" },
+        {
+          name: "Umrah Guideline In English",
+          link: "/guidance/guidance-english",
+        },
+        {
+          name: "Umrah Guideline in Bangla",
+          link: "/guidance/guidance-bangla",
+        },
       ],
     },
     {
       name: "Management Board",
       link: "/management-board",
       subMenu: [
-        { name: "Special Da'e", link: "/" },
-        { name: "Umrah Guides", link: "/board-item-2" },
-        { name: "Sharia Consultant", link: "/board-item-1" },
-        { name: "Business Associate", link: "/board-item-2" },
-        { name: "Flagship Agency", link: "/board-item-1" },
-        { name: "Board Of Director", link: "/board-item-2" },
+        { name: "Special Da'e", link: "/management-board" },
+        { name: "Umrah Guides", link: "/management-board/umrah-guides" },
+        {
+          name: "Sharia Consultant",
+          link: "/management-board/sharia-consultant",
+        },
+        {
+          name: "Business Associate",
+          link: "/management-board/business-associate",
+        },
+        { name: "Flagship Agency", link: "/management-board/flagship-agency" },
+        {
+          name: "Board Of Director",
+          link: "/management-board/board-of-director",
+        },
       ],
     },
     {
@@ -204,8 +219,12 @@ const Navbar = () => {
             <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
           </span>
           <button
-            className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-4 rounded-full text-xl font-medium shadow-md hover:shadow-md transition-all duration-300 transform hover:scale-105  active:scale-95"
-            style={{ textShadow: "0 2px 15px rgba(36, 170, 134, 0.2)" }}
+            className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-4 rounded-full text-xl font-medium shadow-md transition-all duration-300 transform hover:scale-105 active:scale-95 active:translate-y-[3px]"
+            style={{
+              textShadow: "0 2px 15px rgba(36, 170, 134, 0.2)",
+              willChange: "transform",
+              backfaceVisibility: "hidden",
+            }}
           >
             Login
           </button>

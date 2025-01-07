@@ -26,6 +26,12 @@ import UmrahTraining from "../pages/UmrahTraining/UmrahTraining";
 import FacilitiesLayout from "../layouts/FacilitiesLayout";
 import GuidanceLayout from "../layouts/GuidanceLayout";
 import GuidanceBangla from "../pages/GuidanceBangla/GuidanceBangla";
+import UmrahGuidesManage from "../pages/UmrahGuidesManage/UmrahGuidesManage";
+import ManagementLayout from "../layouts/ManagementLayout";
+import ShariaConsultantManage from "../pages/ShariaConsultantManage/ShariaConsultantManage";
+import BusinessAssociateManage from "../pages/BusinessAssociateManage/BusinessAssociateManage";
+import FlagshipAgencyManage from "../pages/FlagshipAgencyManage/FlagshipAgencyManage";
+import BoardOfDirectorManage from "../pages/BoardOfDirectorManage/BoardOfDirectorManage";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -133,7 +139,33 @@ const AppRoutes = () => {
         },
         {
           path: "/management-board",
-          element: <ManagementBoard />,
+          element: <ManagementLayout />,
+          children: [
+            {
+              path: "",
+              element: <ManagementBoard />,
+            },
+            {
+              path: "umrah-guides",
+              element: <UmrahGuidesManage />,
+            },
+            {
+              path: "sharia-consultant",
+              element: <ShariaConsultantManage />,
+            },
+            {
+              path: "business-associate",
+              element: <BusinessAssociateManage />,
+            },
+            {
+              path: "flagship-agency",
+              element: <FlagshipAgencyManage />,
+            },
+            {
+              path: "board-of-director",
+              element: <BoardOfDirectorManage />,
+            },
+          ],
         },
         {
           path: "/about-us",

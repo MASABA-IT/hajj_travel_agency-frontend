@@ -49,9 +49,15 @@ const PackageDetailsCard = ({ imgSrc, title, details }) => {
       className={`bg-white p-4 shadow-md rounded-md transform transition-transform duration-700 scale-90 hover:scale-95 hover:cursor-pointer ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
+      style={
+        {
+          willChange:'transform',
+          backfaceVisibility:'hidden'
+        }
+      }
     >
       <img className="w-full" src={imgSrc} alt={title} />
-      <h2 className="text-xl text-center py-5 font-bold border-b-2 text-[#1a6d57]">
+      <h2 className="text-xl text-center py-5 font-bold border-b-2 text-[#4b635c]">
         {title}
       </h2>
       <div className="flex flex-col">
@@ -59,7 +65,7 @@ const PackageDetailsCard = ({ imgSrc, title, details }) => {
           <div
             key={index}
             className={`w-full text-[14px] ${
-              index % 2 !== 0 ? "text-gray-700" : "text-[#24aa86]"
+              index % 2 !== 0 ? "text-gray-600" : "text-[#24aa86]"
             } flex justify-between items-center py-3 px-2 ${
               index % 2 === 0 ? "bg-white" : "bg-gray-50"
             }`}
