@@ -218,7 +218,7 @@ const Navbar = () => {
           <span className="w-[33px] h-[33px]  flex justify-center items-center rounded-full bg-green-700">
             <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
           </span>
-          <button
+          <NavLink to="signInUp"
             className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-4 rounded-full text-xl font-medium shadow-md transition-all duration-300 transform hover:scale-105 active:scale-95 active:translate-y-[3px]"
             style={{
               textShadow: "0 2px 15px rgba(36, 170, 134, 0.2)",
@@ -227,7 +227,7 @@ const Navbar = () => {
             }}
           >
             Login
-          </button>
+          </NavLink>
         </div>
       </div>
     </header>

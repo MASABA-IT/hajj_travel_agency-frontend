@@ -32,6 +32,7 @@ import ShariaConsultantManage from "../pages/ShariaConsultantManage/ShariaConsul
 import BusinessAssociateManage from "../pages/BusinessAssociateManage/BusinessAssociateManage";
 import FlagshipAgencyManage from "../pages/FlagshipAgencyManage/FlagshipAgencyManage";
 import BoardOfDirectorManage from "../pages/BoardOfDirectorManage/BoardOfDirectorManage";
+import SignInUp from "../share/SignInUp/SignInUp";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -174,6 +175,10 @@ const AppRoutes = () => {
         {
           path: "/umrah-appointment",
           element: <AppointmentPage />,
+        },
+        {
+          path: "/signInUp",
+          element: <SignInUp />,
         },
       ],
     },

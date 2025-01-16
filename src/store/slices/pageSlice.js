@@ -1,16 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Importing images
-// import colorTojbi from "../../assets/imgs/colorTojbi.png";
-// import mosjid from "../../assets/imgs/mosjid.png";
-// import colorKaba from "../../assets/imgs/mosjid.png";
-// import Kaba from "../../assets/imgs/kaba.png";
-// import visa from "../../assets/imgs/visa.png";
-// import plane from "../../assets/imgs/plane.png";
-// import performUmrahStep from "../../assets/imgs/performUmrahStep.png";
-// import caliography from "../../assets/imgs/Caliography.png";
-
-// Initial State
+ 
 const initialState = {
   /*
   pages: {
