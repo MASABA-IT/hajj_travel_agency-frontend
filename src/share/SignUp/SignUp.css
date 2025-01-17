@@ -1,0 +1,8 @@
+.signUp input:-webkit-autofill {
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.signUp input:-webkit-autofill:focus {
+  background-color: transparent !important;
+}

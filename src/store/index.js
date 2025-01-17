@@ -8,6 +8,7 @@ import guidanceReducer from "./slices/guidanceSlice";
 import managementReducer from "./slices/managementSlice";
 import locationReducer from "./slices/locationSlice";
 import faqReducer from "./slices/pageFaqDataSlice";
+import authReducer from "./slices/authSlice";
 const store = configureStore({
   reducer: {
     loading: loadingReducer,
@@ -19,6 +20,7 @@ const store = configureStore({
     management: managementReducer,
     location: locationReducer,
     faq: faqReducer,
+    auth: authReducer,
   },
 });
 
