@@ -61,11 +61,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="max-w-[500px] w-full bg-white p-8 rounded-xl shadow-lg">
+    <div className="max-w-[500px] w-full   bg-white p-8 rounded-xl shadow-lg">
       <h2 className="text-2xl font-bold mb-8  text-center text-zinc-600">
         Sign Up
       </h2>
-      <form onSubmit={handleSubmit} className="signUp">
+      <form onSubmit={handleSubmit} className="signUp ">
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-4">
           {/* First Name */}
           <div className="relative w-full md:w-[48%] ">

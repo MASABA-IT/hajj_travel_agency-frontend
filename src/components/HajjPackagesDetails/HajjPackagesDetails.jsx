@@ -14,6 +14,7 @@ import {
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PackageDetailsCard = ({ imgSrc, title, details }) => {
   const cardRef = useRef(null);
@@ -44,7 +45,7 @@ const PackageDetailsCard = ({ imgSrc, title, details }) => {
   }, []);
 
   return (
-    <div
+    <Link to="/packageDescription"
       ref={cardRef}
       className={`bg-white p-4 shadow-md rounded-md transform transition-transform duration-700 scale-90 hover:scale-95 hover:cursor-pointer ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
@@ -81,7 +82,7 @@ const PackageDetailsCard = ({ imgSrc, title, details }) => {
           </div>
         ))}
       </div>
-    </div>
+    </Link>
   );
 };
 

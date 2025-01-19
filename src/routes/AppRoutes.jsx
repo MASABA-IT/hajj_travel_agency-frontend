@@ -33,6 +33,7 @@ import BusinessAssociateManage from "../pages/BusinessAssociateManage/BusinessAs
 import FlagshipAgencyManage from "../pages/FlagshipAgencyManage/FlagshipAgencyManage";
 import BoardOfDirectorManage from "../pages/BoardOfDirectorManage/BoardOfDirectorManage";
 import SignInUp from "../share/SignInUp/SignInUp";
+import PackageDescription from "../components/PackageDescription/PackageDescription";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -175,6 +176,10 @@ const AppRoutes = () => {
         {
           path: "/umrah-appointment",
           element: <AppointmentPage />,
+        },
+        {
+          path: "/packageDescription",
+          element: <PackageDescription />,
         },
         {
           path: "/signInUp",

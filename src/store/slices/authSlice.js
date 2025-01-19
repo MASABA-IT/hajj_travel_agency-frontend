@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Simulate API calls for sign-up and sign-in
+ 
 const fakeAuthApi = {
   signUp: async (userData) => {
     return new Promise((resolve) => {
@@ -35,16 +35,16 @@ export const signIn = createAsyncThunk("auth/signIn", async (userData) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuthenticated: !!localStorage.getItem("user"), // Initialize from localStorage
+    isAuthenticated: !!localStorage.getItem("user"),  
     loading: false,
     error: null,
-    user: JSON.parse(localStorage.getItem("user")) || null, // Retrieve user data from localStorage
+    user: JSON.parse(localStorage.getItem("user")) || null, 
   },
   reducers: {
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
-      localStorage.removeItem("user"); // Remove user data from localStorage on logout
+      localStorage.removeItem("user");  
     },
   },
   extraReducers: (builder) => {
@@ -56,12 +56,12 @@ const authSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
-        state.user = action.payload.user; // Set user data from sign-up response
-        localStorage.setItem("user", JSON.stringify(action.payload.user)); // Store user data in localStorage
+        state.user = action.payload.user;  
+        localStorage.setItem("user", JSON.stringify(action.payload.user)); 
       })
       .addCase(signUp.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message; // Capture error message
+        state.error = action.error.message; 
       })
       // Handling signIn actions
       .addCase(signIn.pending, (state) => {
@@ -70,12 +70,12 @@ const authSlice = createSlice({
       .addCase(signIn.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
-        state.user = action.payload.user; // Set user data from sign-in response
-        localStorage.setItem("user", JSON.stringify(action.payload.user)); // Store user data in localStorage
+        state.user = action.payload.user;  
+        localStorage.setItem("user", JSON.stringify(action.payload.user));  
       })
       .addCase(signIn.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message; // Capture error message
+        state.error = action.error.message;  
       });
   },
 });
