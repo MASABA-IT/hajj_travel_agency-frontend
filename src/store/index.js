@@ -9,8 +9,10 @@ import managementReducer from "./slices/managementSlice";
 import locationReducer from "./slices/locationSlice";
 import faqReducer from "./slices/pageFaqDataSlice";
 import authReducer from "./slices/authSlice";
+import categoryReducer from "./slices/categorySlice";
 const store = configureStore({
   reducer: {
+    categories: categoryReducer,
     loading: loadingReducer,
     page: pageReducer,
     umrah: umrahReducer,
