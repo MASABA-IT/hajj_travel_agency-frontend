@@ -12,11 +12,11 @@ const Navbar = () => {
     (state) => state.categories
   );
   useEffect(() => {
-    dispatch(fetchCategories());
+    dispatch(fetchCategories()); // Dispatch the action to fetch data
   }, [dispatch]);
   const [activeMenu, setActiveMenu] = useState(null);
   const [clickedMenu, setClickedMenu] = useState(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu toggle
   const menuRef = useRef(null);
   const [timeoutId, setTimeoutId] = useState(null);
   const [iconRotation, setIconRotation] = useState(false);
@@ -99,7 +99,7 @@ const Navbar = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <NavLink
-                  to={item?.link}
+                  to={item?.path}
                   className={({ isActive }) =>
                     `block text-white transition duration-200 ${
                       isActive ? "text-[#343f38]" : ""

@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect } from "react";
 import { startLoading, stopLoading } from "../store/slices/loadingSlice";
 import FullPageLoader from "../share/FullPageLoader/FullPageLoader";
@@ -34,10 +34,17 @@ import FlagshipAgencyManage from "../pages/FlagshipAgencyManage/FlagshipAgencyMa
 import BoardOfDirectorManage from "../pages/BoardOfDirectorManage/BoardOfDirectorManage";
 import SignInUp from "../share/SignInUp/SignInUp";
 import PackageDescription from "../components/PackageDescription/PackageDescription";
+import { fetchCategories } from "../store/slices/categorySlice";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
-
+  const { categories, loading, error } = useSelector(
+    (state) => state.categories
+  );
+  useEffect(() => {
+    dispatch(fetchCategories()); // Dispatch the action to fetch data
+  }, [dispatch]);
+  console.log(categories);
   const router = createBrowserRouter([
     {
       path: "/",
