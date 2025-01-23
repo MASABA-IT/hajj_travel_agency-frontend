@@ -9,11 +9,9 @@ import managementReducer from "./slices/managementSlice";
 import locationReducer from "./slices/locationSlice";
 import faqReducer from "./slices/pageFaqDataSlice";
 import authReducer from "./slices/authSlice";
-import categoryReducer from "./slices/categorySlice";
 import packageReducer from "./slices/packageSlice";
 const store = configureStore({
   reducer: {
-    categories: categoryReducer,
     loading: loadingReducer,
     page: pageReducer,
     umrah: umrahReducer,
@@ -24,8 +22,7 @@ const store = configureStore({
     location: locationReducer,
     faq: faqReducer,
     auth: authReducer,
-    package:packageReducer,
-
+    packages: packageReducer,
   },
 });
 

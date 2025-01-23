@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Suspense, useEffect } from "react";
-import { startLoading, stopLoading } from "../store/slices/loadingSlice";
+
+import { Suspense } from "react";
+
 import FullPageLoader from "../share/FullPageLoader/FullPageLoader";
 import Home from "../pages/Home/Home";
 import MainLayout from "../layouts/MainLayout";
@@ -34,17 +34,8 @@ import FlagshipAgencyManage from "../pages/FlagshipAgencyManage/FlagshipAgencyMa
 import BoardOfDirectorManage from "../pages/BoardOfDirectorManage/BoardOfDirectorManage";
 import SignInUp from "../share/SignInUp/SignInUp";
 import PackageDescription from "../components/PackageDescription/PackageDescription";
-import { fetchCategories } from "../store/slices/categorySlice";
 
 const AppRoutes = () => {
-  const dispatch = useDispatch();
-  const { categories, loading, error } = useSelector(
-    (state) => state.categories
-  );
-  useEffect(() => {
-    dispatch(fetchCategories()); // Dispatch the action to fetch data
-  }, [dispatch]);
-  console.log(categories);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -77,6 +68,10 @@ const AppRoutes = () => {
             {
               path: "umrah-visa-requirement",
               element: <UmrahVisaRequirements />,
+            },
+            {
+              path: "packageDescription",
+              element: <PackageDescription />,
             },
           ],
         },
@@ -184,10 +179,7 @@ const AppRoutes = () => {
           path: "/umrah-appointment",
           element: <AppointmentPage />,
         },
-        {
-          path: "/packageDescription",
-          element: <PackageDescription />,
-        },
+
         {
           path: "/signInUp",
           element: <SignInUp />,
@@ -195,18 +187,6 @@ const AppRoutes = () => {
       ],
     },
   ]);
-
-  // Trigger loading when the app first launches
-  useEffect(() => {
-    dispatch(startLoading());
-
-    // Simulate network or loading delay
-    const timer = setTimeout(() => {
-      dispatch(stopLoading()); // Stop the loading state after 2 seconds
-    }, 2000); // You can adjust this timeout or replace it with actual async operations
-
-    return () => clearTimeout(timer); // Cleanup the timeout
-  }, [dispatch]);
 
   return <RouterProvider router={router} />;
 };

@@ -15,6 +15,8 @@ import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPackages } from "../../store/slices/packageSlice";
 
 const PackageDetailsCard = ({ imgSrc, title, details }) => {
   const cardRef = useRef(null);
@@ -45,17 +47,16 @@ const PackageDetailsCard = ({ imgSrc, title, details }) => {
   }, []);
 
   return (
-    <Link to="/packageDescription"
+    <Link
+      to="/packageDescription"
       ref={cardRef}
       className={`bg-white p-4 shadow-md rounded-md transform transition-transform duration-700 scale-90 hover:scale-95 hover:cursor-pointer ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
-      style={
-        {
-          willChange:'transform',
-          backfaceVisibility:'hidden'
-        }
-      }
+      style={{
+        willChange: "transform",
+        backfaceVisibility: "hidden",
+      }}
     >
       <img className="w-full" src={imgSrc} alt={title} />
       <h2 className="text-xl text-center py-5 font-bold border-b-2 text-[#4b635c]">
@@ -87,7 +88,13 @@ const PackageDetailsCard = ({ imgSrc, title, details }) => {
 };
 
 const HajjPackagesDetails = () => {
-  // Define details for each Hajj package
+  const dispatch = useDispatch();
+  const { packages, loading, error } = useSelector((state) => state.packages);
+
+  useEffect(() => {
+    dispatch(fetchPackages());
+  }, [dispatch]);
+  console.log(packages, "packages");
   const hajjPackages = [
     {
       imgSrc: imgOne,

@@ -1,13 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URL } from "./apiConfig";
 
 export const fetchPackages = createAsyncThunk(
-  "Packages/fetchPackages",
+  "packages/fetchPackages",
   async () => {
-    const response = await fetch("http://192.168.0.154:8000/api/packages"); // Correct API endpoint
+    const response = await fetch(`${BASE_URL}api/packages`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const data = await response.json();
-    return data.categories;
+
+    return data ;
   }
 );
+
 const packageSlice = createSlice({
   name: "packages",
   initialState: {
