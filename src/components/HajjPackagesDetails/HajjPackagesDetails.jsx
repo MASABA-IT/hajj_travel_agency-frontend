@@ -13,79 +13,11 @@ import {
 } from "react-icons/md";
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoFastFoodSharp } from "react-icons/io5";
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPackages } from "../../store/slices/packageSlice";
-
-const PackageDetailsCard = ({ imgSrc, title, details }) => {
-  const cardRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 } // Trigger when 10% of the card is visible
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
-
-  return (
-    <Link
-      to="/packageDescription"
-      ref={cardRef}
-      className={`bg-white p-4 shadow-md rounded-md transform transition-transform duration-700 scale-90 hover:scale-95 hover:cursor-pointer ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-      }`}
-      style={{
-        willChange: "transform",
-        backfaceVisibility: "hidden",
-      }}
-    >
-      <img className="w-full" src={imgSrc} alt={title} />
-      <h2 className="text-xl text-center py-5 font-bold border-b-2 text-[#4b635c]">
-        {title}
-      </h2>
-      <div className="flex flex-col">
-        {details.map((detail, index) => (
-          <div
-            key={index}
-            className={`w-full text-[14px] ${
-              index % 2 !== 0 ? "text-gray-600" : "text-[#24aa86]"
-            } flex justify-between items-center py-3 px-2 ${
-              index % 2 === 0 ? "bg-white" : "bg-gray-50"
-            }`}
-          >
-            <p className="w-[47%] flex items-center gap-2">
-              <span>{detail.icon}</span>
-              <span>{detail.label}</span>
-            </p>
-
-            <p className="w-[47%]">
-              :<span className="px-1">{detail.value}</span>
-            </p>
-          </div>
-        ))}
-      </div>
-    </Link>
-  );
-};
+import PackageDetailsCard from "../PackageDetailsCard/PackageDetailsCard";
 
 const HajjPackagesDetails = () => {
   const dispatch = useDispatch();
@@ -95,212 +27,62 @@ const HajjPackagesDetails = () => {
     dispatch(fetchPackages());
   }, [dispatch]);
   console.log(packages, "packages");
-  const hajjPackages = [
-    {
-      imgSrc: imgOne,
-      title: "Economy Hajj Package",
-      details: [
-        {
-          icon: <ImPriceTags />,
-          label: "Price",
-          value: "From 6,50,000",
-        },
-        {
-          icon: <MdOutlineTimer />,
-          label: "Time & Duration",
-          value: "Custom",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Makkah",
-          value: "Custom",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Madinah",
-          value: "Custom",
-        },
-        {
-          icon: <FaPlaneDeparture />,
-          label: "Flights Up",
-          value: "Direct",
-        },
-        {
-          icon: <FaPlaneArrival />,
-          label: "Flights Down",
-          value: "Direct",
-        },
-        {
-          icon: <IoFastFoodSharp />,
-          label: "Food",
-          value: "Breakfast, Lunch & Dinner",
-        },
-        {
-          icon: <MdHomeRepairService />,
-          label: "Special Services",
-          value: "Ziyara + Guide + Da’e + Workshop",
-        },
-        {
-          icon: <span className="text-3xl text-[#24aa86]">*****</span>,
-          label: "",
-          value: "5/5 (88 Reviews)",
-        },
-      ],
-    },
-    {
-      imgSrc: imgTwo, // You can replace with another image like imgTwo
-      title: "Luxury Hajj Package",
-      details: [
-        {
-          icon: <ImPriceTags />,
-          label: "Price",
-          value: "From 10,00,000",
-        },
-        {
-          icon: <MdOutlineTimer />,
-          label: "Time & Duration",
-          value: "2 Weeks",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Makkah",
-          value: "5 Star",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Madinah",
-          value: "5 Star",
-        },
-        {
-          icon: <FaPlaneDeparture />,
-          label: "Flights Up",
-          value: "Business Class",
-        },
-        {
-          icon: <FaPlaneArrival />,
-          label: "Flights Down",
-          value: "Business Class",
-        },
-        {
-          icon: <IoFastFoodSharp />,
-          label: "Food",
-          value: "Gourmet Meals",
-        },
-        {
-          icon: <MdHomeRepairService />,
-          label: "Special Services",
-          value: "VIP Assistance",
-        },
-        {
-          icon: <span className="text-3xl text-[#24aa86]">*****</span>,
-          label: "",
-          value: "5/5 (120 Reviews)",
-        },
-      ],
-    },
-    {
-      imgSrc: imgThree, // Replace with imgThree
-      title: "Premium Hajj Package",
-      details: [
-        {
-          icon: <ImPriceTags />,
-          label: "Price",
-          value: "From 8,00,000",
-        },
-        {
-          icon: <MdOutlineTimer />,
-          label: "Time & Duration",
-          value: "10 Days",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Makkah",
-          value: "4 Star",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Madinah",
-          value: "4 Star",
-        },
-        {
-          icon: <FaPlaneDeparture />,
-          label: "Flights Up",
-          value: "Economy",
-        },
-        {
-          icon: <FaPlaneArrival />,
-          label: "Flights Down",
-          value: "Economy",
-        },
-        {
-          icon: <IoFastFoodSharp />,
-          label: "Food",
-          value: "Half Board",
-        },
-        {
-          icon: <MdHomeRepairService />,
-          label: "Special Services",
-          value: "Guide & Assistance",
-        },
-        {
-          icon: <span className="text-3xl text-[#24aa86]">*****</span>,
-          label: "",
-          value: "4.5/5 (45 Reviews)",
-        },
-      ],
-    },
-    {
-      imgSrc: imgFour, // Replace with imgFour
-      title: "Basic Hajj Package",
-      details: [
-        {
-          icon: <ImPriceTags />,
-          label: "Price",
-          value: "From 5,00,000",
-        },
-        {
-          icon: <MdOutlineTimer />,
-          label: "Time & Duration",
-          value: "Custom",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Makkah",
-          value: "3 Star",
-        },
-        {
-          icon: <MdLocalHotel />,
-          label: "Hotel Madinah",
-          value: "3 Star",
-        },
-        {
-          icon: <FaPlaneDeparture />,
-          label: "Flights Up",
-          value: "Direct",
-        },
-        {
-          icon: <FaPlaneArrival />,
-          label: "Flights Down",
-          value: "Direct",
-        },
-        {
-          icon: <IoFastFoodSharp />,
-          label: "Food",
-          value: "Breakfast & Dinner",
-        },
-        {
-          icon: <MdHomeRepairService />,
-          label: "Special Services",
-          value: "Basic Assistance",
-        },
-        {
-          icon: <span className="text-3xl text-[#24aa86]">*****</span>,
-          label: "",
-          value: "4/5 (20 Reviews)",
-        },
-      ],
-    },
-  ];
+  const hajjPackages = packages.map((pkg) => ({
+    imgSrc: pkg?.thumbnail, // Set image source from package data
+    title: pkg.title,
+    id: pkg.id,
+    details: [
+      {
+        icon: <ImPriceTags />,
+        label: "Price",
+        value: `From ${pkg.price}`,
+      },
+      {
+        icon: <MdOutlineTimer />,
+        label: "Time & Duration",
+        value: pkg.duration,
+      },
+      {
+        icon: <MdLocalHotel />,
+        label: "Hotel Makkah",
+        value: pkg.hotel_makkah,
+      },
+      {
+        icon: <MdLocalHotel />,
+        label: "Hotel Madinah",
+        value: pkg.hotel_madinah,
+      },
+      {
+        icon: <FaPlaneDeparture />,
+        label: "Flights Up",
+        value: pkg.flight_up,
+      },
+      {
+        icon: <FaPlaneArrival />,
+        label: "Flights Down",
+        value: pkg.flight_down,
+      },
+      {
+        icon: <IoFastFoodSharp />,
+        label: "Food",
+        value: pkg.food,
+      },
+      {
+        icon: <MdHomeRepairService />,
+        label: "Special Services",
+        value: pkg.special_service,
+      },
+      {
+        icon: <span className="text-3xl text-[#24aa86]">*****</span>,
+        label: "",
+        value: `${pkg.reviews_avg_rating || "No Rating"} (${
+          pkg.reviews_count
+        } Reviews)`,
+      },
+    ],
+  }));
+
+  console.log(hajjPackages, "Updated Hajj Packages");
 
   return (
     <section
@@ -320,6 +102,7 @@ const HajjPackagesDetails = () => {
               imgSrc={packageItem.imgSrc}
               title={packageItem.title}
               details={packageItem.details}
+              id={packageItem.id}
             />
           ))}
         </div>
