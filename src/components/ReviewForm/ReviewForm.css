@@ -1,0 +1,34 @@
+.custom-radio {
+  -webkit-appearance: none; /* Remove default radio button style */
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px; /* Outer circle size */
+  height: 20px;
+  border-radius: 50%; /* Make the outer circle */
+  border: 2px solid #ffd700; /* Gold border */
+  background-color: white;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-radio:checked {
+  background-color: #ffd700; /* Gold background when selected */
+}
+
+/* Inner dot when checked */
+.custom-radio:checked::before {
+  content: "";
+  position: absolute;
+  top: 5px; /* Adjust to center the inner dot vertically */
+  left: 5px; /* Adjust to center the inner dot horizontally */
+  width: 10px; /* Inner dot size */
+  height: 10px;
+  border-radius: 50%; /* Dot shape */
+  background-color: white; /* Inner dot color */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Optional: Hover effect */
+.custom-radio:hover {
+  border-color: #f4a261; /* Lighter border color on hover */
+}

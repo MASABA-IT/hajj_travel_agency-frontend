@@ -34,7 +34,8 @@ const PackageDetailsCard = ({ imgSrc, title, details = [], id }) => {
     console.log(id);
     e.preventDefault();
     navigate("/umrah/packageDescription", { state: { id } });
-    //    navigate("/productInfo", { state: { id } });
+    //   const location = useLocation();
+    //   const id = location.state?.id;
   };
   return (
     <div

@@ -10,6 +10,9 @@ import locationReducer from "./slices/locationSlice";
 import faqReducer from "./slices/pageFaqDataSlice";
 import authReducer from "./slices/authSlice";
 import packageReducer from "./slices/packageSlice";
+import packageSinglReducer from "./slices/packageSingleSlice";
+import bookingReducer from "./slices/packageBookingSlice";
+import reviewReducer from "./slices/reviewPackageSlice";
 const store = configureStore({
   reducer: {
     loading: loadingReducer,
@@ -23,6 +26,9 @@ const store = configureStore({
     faq: faqReducer,
     auth: authReducer,
     packages: packageReducer,
+    packageSingleDetails: packageSinglReducer,
+    bookingPackage: bookingReducer,
+    reviewPackage: reviewReducer,
   },
 });
 

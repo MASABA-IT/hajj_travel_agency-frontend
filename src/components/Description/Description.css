@@ -1,0 +1,60 @@
+/* Dynamic Content Container */
+.dynamic-content {
+  height: auto;
+  line-height: 1.6;
+
+  display: block;
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Expanded Content View */
+.dynamic-content.expanded {
+  overflow: visible; /* Ensure expanded content displays properly */
+}
+
+/* Styling for Headings (h3) */
+.dynamic-content h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Styling for Strong Text */
+.dynamic-content strong {
+  font-weight: bold;
+  color: #000; /* Ensure bold text is distinct */
+}
+
+/* Styling for Paragraphs */
+.dynamic-content p {
+  margin-bottom: 1rem;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Styling for Ordered Lists */
+.dynamic-content ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem; /* Ensures proper space between list and text */
+}
+
+/* Styling for Unordered Lists */
+.dynamic-content ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem; /* Ensures proper space between list and text */
+}
+
+/* Nested Lists Styling */
+.dynamic-content ul li,
+.dynamic-content ol li {
+  margin-left: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* Optional Ellipsis for Collapsed Content */

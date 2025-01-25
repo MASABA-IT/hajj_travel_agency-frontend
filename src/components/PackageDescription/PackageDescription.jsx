@@ -1,6 +1,5 @@
-import { useState } from "react";
-import img1 from "../../assets/imgs/hotelRoom.jpg";
-import { BiSolidMap } from "react-icons/bi";
+import { useEffect, useState } from "react";
+
 import { TiStar } from "react-icons/ti";
 import {
   MdOutlineDoNotDisturb,
@@ -8,32 +7,39 @@ import {
   MdOutlineLanguage,
   MdSpatialTracking,
 } from "react-icons/md";
-import { IoAnalyticsSharp, IoLocationSharp } from "react-icons/io5";
+import { IoAnalyticsSharp } from "react-icons/io5";
 import { GiDuration } from "react-icons/gi";
-import { FaRegUserCircle } from "react-icons/fa";
+
 import { CiHeart } from "react-icons/ci";
 import { PiShareFatThin } from "react-icons/pi";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { fetchPackageDetailsById } from "../../store/slices/packageSingleSlice";
+import ModalBooking from "../ModalBooking/ModalBooking";
+import { BASE_URL } from "../../store/slices/apiConfig";
+import Description from "../Description/Description";
+import { submitPackageBookingData } from "../../store/slices/packageBookingSlice";
+import {
+  getReviews,
+  submitReview,
+} from "../../store/slices/reviewPackageSlice";
+import ReviewList from "../ReviewList/ReviewList";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
 const PackageDescription = () => {
-  const [quantity, setQuantity] = useState(1);
+  // const { review, isLoading, error } = useSelector((state) => state.review);
+  // console.log(review);
+  const dispatch = useDispatch();
+  const location = useLocation(); // Using useLocation to access state
+  const { id } = location.state || {}; // Extract the ID passed through location state
 
-  // Handlers for incrementing and decrementing quantity
-  const handleIncrement = () => setQuantity(quantity + 1);
-  const handleDecrement = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
-
-  // Facilities list for the package
-  const facilities1 = [
-    "Free parking",
-    "Family rooms",
-    "Free WiFi",
-    "Airport shuttle",
-    "Non-smoking rooms",
-    "Room service",
-    "Facilities for disabled guests",
-    "24-hour front desk",
-    "Lift",
-    "Air conditioning",
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false); // To manage modal visibility
+  const [bookingData, setBookingData] = useState({
+    full_name: "",
+    email: "",
+    phone_number: "",
+    note: "",
+  }); // Store the form data
 
   const [bookingDetails, setBookingDetails] = useState({
     from: "2021-12-10",
@@ -78,10 +84,16 @@ const PackageDescription = () => {
       icon: <MdOutlineLanguage />,
     },
   ];
+
+  /////////////
+  ///Review
+
+  const username = "user";
   const [reviews, setReviews] = useState([]); // To store reviews
   const [formData, setFormData] = useState({
-    name: "",
-    review: "",
+    text: "",
+    rating: 0,
+    package_id: id, // Assuming packageId is passed as a prop
   });
 
   // Handle form field change
@@ -91,39 +103,164 @@ const PackageDescription = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.review) {
+
+    if (formData.text && formData.rating) {
       const newReview = {
-        id: Date.now(),
-        ...formData,
-        date: new Date(), // Add the current date here
+        id: Date.now(), // Unique review id
+        username: username,
+        text: formData.text, // Only include text
+        rating: formData.rating, // Only include rating
+        package_id: formData.package_id, // Include package_id
+        date: new Date(), // Add the current date
       };
+
       setReviews([newReview, ...reviews]); // Add new review to the top
-      setFormData({ name: "", review: "" }); // Clear form fields
+      setFormData({ name: "user", text: "", rating: 0, package_id: id }); // Reset form fields
+
+      // Dispatch the submitReview action with only text, rating, and package_id
+      dispatch(
+        submitReview({
+          text: formData.text,
+          rating: formData.rating,
+          package_id: formData.package_id,
+        })
+      );
     }
   };
+  useEffect(() => {
+    if (id) {
+      dispatch(getReviews(id)); // Dispatch the action with package_id
+    }
+  }, [dispatch, id]);
+  ////////////////////
+  /////////single -DATA
+
+  // Access Redux state for package details
+  const { data, loading, error } = useSelector(
+    (state) => state.packageSingleDetails
+  );
+
+  // Fetch package details when component mounts
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchPackageDetailsById(id));
+    }
+  }, [dispatch, id]);
+
+  // Conditional rendering based on loading, error, and data states
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!data) {
+    return <div>No package details available.</div>;
+  }
+  /////////////////
+  ///////////STAR-
+  const [packagesKey = "packages", packages = {}] = data || []; // Default values if data is empty or undefined
+
+  const averageRating = parseFloat(packages.reviews_avg_rating) || 0; // Safely convert to number or set default 0
+  const totalStars = 5; // Max number of stars
+  const fullStars = Math.floor(averageRating); // Full stars
+  const halfStar = averageRating % 1 >= 0.5 ? 1 : 0; // Half star if remainder is 0.5 or greater
+  const emptyStars = totalStars - fullStars - halfStar;
+
+  // console.log(data, "data"); // The full data structure or empty array if data is undefined
+  // console.log(packagesKey, "key"); // The "packages" key or default value
+  // console.log(packages); // The package data or empty object if no data
+
+  ////////////////
+  /////////MODAL
+
+  const handlePackageData = () => {
+    setIsModalOpen(true); // Open the modal when the button is clicked
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
+  const handleModalInputChange = (e) => {
+    const { name, value } = e.target;
+    setBookingData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleModalSubmit = (e) => {
+    e.preventDefault();
+
+    const updatedBookingData = {
+      ...bookingData,
+      package_id: id,
+    };
+
+    console.log("Booking Submitted", updatedBookingData);
+    dispatch(submitPackageBookingData(updatedBookingData));
+    setIsModalOpen(false); // Close the modal
+    setBookingData({ full_name: "", email: "", phone_number: "", note: "" });
+  };
+
   return (
     <div className="mt-28 h-auto p-6 max-w-[1400px] mx-auto flex flex-col justify-between items-center">
       {/* Header Section */}
       <div className="w-full flex flex-col  items-start ">
         <h2 className="text-xl md:text-3xl font-bold text-gray-700">
-          Vintage Double Decker Bus Tour & Thames River Cruise
+          {packages?.title}
         </h2>
         <div className="flex justify-center items-center mt-2 text-gray-600">
-          <span className="flex items-center">
+          {/* <span className="flex items-center">
             <BiSolidMap className="mr-1" />
             Gothenburg
           </span>
-          <span className="mx-2">|</span>
-          <span className="flex items-center">
-            {Array(5)
-              .fill(0)
-              .map((_, index) => (
-                <TiStar key={index} className="mr-1 text-yellow-500" />
-              ))}
-            (358 reviews)
-          </span>
+          <span className="mx-2">|</span> */}
+          {
+            <span className="flex items-center">
+              {/* Full stars */}
+              {Array(fullStars)
+                .fill(0)
+                .map((_, index) => (
+                  <TiStar
+                    key={`full-${index}`}
+                    className="mr-1 text-[#24aa86]"
+                  />
+                ))}
+
+              {/* Half star */}
+              {halfStar === 1 && (
+                <TiStar
+                  key="half"
+                  className="mr-1 text-[#24aa86]"
+                  style={{ clipPath: "inset(0 50% 0 0)" }}
+                />
+              )}
+
+              {/* Empty stars */}
+              {Array(emptyStars)
+                .fill(0)
+                .map((_, index) => (
+                  <TiStar
+                    key={`empty-${index}`}
+                    className="mr-1 text-gray-300"
+                  />
+                ))}
+
+              <span className="text-sm text-gray-500">
+                {packages?.reviews_count === 0
+                  ? "No reviews"
+                  : `(${packages?.reviews_count} ${
+                      packages?.reviews_count === 1 ? "review" : "reviews"
+                    })`}
+              </span>
+            </span>
+          }
         </div>
       </div>
 
@@ -132,7 +269,7 @@ const PackageDescription = () => {
         {/* Image Section */}
         <div className="basis-[65%]">
           <img
-            src={img1}
+            src={`${BASE_URL}/${packages?.thumbnail}`}
             alt="Package"
             className="w-full rounded-lg shadow-lg"
           />
@@ -178,7 +315,7 @@ const PackageDescription = () => {
                 autoComplete="off"
               />
             </div>
-            <div>
+            {/* <div>
               <label
                 htmlFor="guests"
                 className="block text-sm font-medium text-gray-700"
@@ -194,21 +331,30 @@ const PackageDescription = () => {
                 min="1"
                 className="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm outline-none focus:outline-slate-400"
               />
-            </div>
+            </div> */}
             <div className="flex flex-col justify-center items-center text-sm font-medium text-gray-700">
               <h3>Subtotal</h3>
-              <h1 className="text-gray-900 text-2xl md:text-5xl">
-                ${bookingDetails.subtotal.toFixed(2)}
+              <h1 className="text-gray-700 text-2xl md:text-3xl">
+                ৳{packages?.price}
               </h1>
             </div>
             <button
               type="button"
+              onClick={handlePackageData}
               className="w-full bg-[#24aa86] text-white font-semibold py-2 px-4 rounded-md shadow-md hover:bg-[#24aa86] transition"
             >
               Confirm Booking
             </button>
+            {/* Modal component */}
+            {isModalOpen && (
+              <ModalBooking
+                closeModal={closeModal}
+                bookingData={bookingData}
+                handleModalInputChange={handleModalInputChange}
+                handleModalSubmit={handleModalSubmit}
+              />
+            )}
           </form>
-
           <div className="mt-6 flex flex-col justify-between space-y-4  ">
             <button
               type="button"
@@ -247,28 +393,10 @@ const PackageDescription = () => {
         </div>
       </div>
 
-      <div className="mt-8 w-full">
-        <h1 className="text-2xl font-bold">Hajj Package Description</h1>
-        <p className="mt-2 text-lg">
-          <strong>Price:</strong> $500
-        </p>
-
-        <h3 className="mt-4 text-xl font-semibold">Description:</h3>
-        <p className="text-md mt-1">
-          This is an amazing Hajj package offering luxurious amenities and a
-          comfortable stay with all the facilities you need.
-        </p>
-
-        {/* Most Popular Facilities */}
-        <h3 className="mt-4 text-xl font-semibold">Most Popular Facilities:</h3>
-        <ul className="md:w-[50%] list-disc grid grid-cols-2  ml-6 mt-2">
-          {facilities1.map((facility, index) => (
-            <li key={index} className="text-md">
-              {facility}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* Description*/}
+      {packages?.description && (
+        <Description description={packages?.description} />
+      )}
 
       {/* Review */}
       <div className="w-full mx-auto my-5">
@@ -277,101 +405,14 @@ const PackageDescription = () => {
         </h2>
 
         {/* Review Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="md:w-[40%] ml-auto  flex flex-col justify-center  bg-white shadow-md rounded-lg p-6 mb-8"
-        >
-          {/* Name Input */}
-          <div className="mb-4">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-600 mb-2"
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-              required
-            />
-          </div>
-
-          {/* Review Input */}
-          <div className="mb-4">
-            <label
-              htmlFor="review"
-              className="block text-sm font-medium text-gray-600 mb-2"
-            >
-              Review
-            </label>
-            <textarea
-              id="review"
-              name="review"
-              value={formData.review}
-              onChange={handleChange}
-              placeholder="Write your review..."
-              rows="4"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 focus:outline-none"
-              required
-            ></textarea>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full px-6 py-2 text-white bg-[#24aa86] hover:bg-[#227c64] rounded-md transition duration-300"
-          >
-            Submit Review
-          </button>
-        </form>
+        <ReviewForm
+          formData={formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
 
         {/* Reviews Display */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
-            Recent Reviews
-          </h3>
-          {reviews.length > 0 ? (
-            <ul className="space-y-4">
-              {reviews.map((review) => (
-                <li
-                  key={review.id}
-                  className="bg-white shadow-md p-6 rounded-md mb-4 flex flex-col  "
-                >
-                  {/* User and Review */}
-                  <div className="flex items-center space-x-2">
-                    <FaRegUserCircle className="text-gray-500 text-2xl" />
-                    <p className="text-sm text-gray-700 font-medium">
-                      {review.name}
-                    </p>
-                  </div>
-
-                  {/* Review Text */}
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {review.review}
-                  </p>
-
-                  {/* Date */}
-                  <span className="text-xs text-gray-400 self-end">
-                    {review.date
-                      ? new Date(review.date).toLocaleDateString("en-US", {
-                          month: "numeric",
-                          day: "numeric",
-                          year: "2-digit",
-                        })
-                      : "Loading..."}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-gray-600">No reviews yet. Be the first!</p>
-          )}
-        </div>
+        <ReviewList reviews={reviews} />
       </div>
     </div>
   );
