@@ -1,81 +1,110 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { BASE_URL } from "./apiConfig";
 
- 
-const fakeAuthApi = {
-  signUp: async (userData) => {
-    return new Promise((resolve) => {
-      setTimeout(
-        () => resolve({ message: "Sign Up Success", user: userData }),
-        1000
+// Async thunks for login and register actions
+export const register = createAsyncThunk(
+  "auth/register",
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios.post(`${BASE_URL}api/register`, userData);
+      console.log(userData, 'userdata');
+      return response.data; // Return the data from the API
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Registration failed"
       );
-    });
-  },
-  signIn: async (userData) => {
-    return new Promise((resolve) => {
-      setTimeout(
-        () => resolve({ message: "Sign In Success", user: userData }),
-        1000
+    }
+  }
+);
+
+export const login = createAsyncThunk(
+  "auth/login",
+  async (userData, thunkAPI) => {
+    try {
+      // First, send login request
+      const response = await axios.post(`${BASE_URL}api/login`, userData);
+
+      // Get the token from login response
+      const token = response.data.token;
+
+      // Store the token in localStorage
+      localStorage.setItem("token", token);
+
+      // Fetch user profile with the token
+      const profileResponse = await axios.get(`${BASE_URL}api/profile/show`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // Return both the token and profile data
+      return {
+        token,
+        user: profileResponse.data,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Login failed"
       );
-    });
-  },
-};
-
-// Async thunks to handle the signUp and signIn actions
-export const signUp = createAsyncThunk("auth/signUp", async (userData) => {
-  const response = await fakeAuthApi.signUp(userData);
-  return response;
-});
-
-export const signIn = createAsyncThunk("auth/signIn", async (userData) => {
-  const response = await fakeAuthApi.signIn(userData);
-  return response;
-});
+    }
+  }
+);
 
 // Slice definition
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isAuthenticated: !!localStorage.getItem("user"),  
+    isAuthenticated: !!localStorage.getItem("user"),
     loading: false,
     error: null,
-    user: JSON.parse(localStorage.getItem("user")) || null, 
+    user: JSON.parse(localStorage.getItem("user")) || null,
+    token: localStorage.getItem("token") || null,
   },
   reducers: {
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
-      localStorage.removeItem("user");  
+      state.token = null;
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
     builder
-      // Handling signUp actions
-      .addCase(signUp.pending, (state) => {
+      // Register actions
+      .addCase(register.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
-      .addCase(signUp.fulfilled, (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
-        state.user = action.payload.user;  
-        localStorage.setItem("user", JSON.stringify(action.payload.user)); 
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
+        localStorage.setItem("token", action.payload.token);
       })
-      .addCase(signUp.rejected, (state, action) => {
+      .addCase(register.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message; 
+        state.error = action.payload;
       })
-      // Handling signIn actions
-      .addCase(signIn.pending, (state) => {
+      // Login actions
+      .addCase(login.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
-      .addCase(signIn.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
-        state.user = action.payload.user;  
-        localStorage.setItem("user", JSON.stringify(action.payload.user));  
+        state.user = action.payload.user; // Store profile data
+        state.token = action.payload.token; // Store token
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
+        localStorage.setItem("token", action.payload.token);
       })
-      .addCase(signIn.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;  
+        state.error = action.payload;
       });
   },
 });

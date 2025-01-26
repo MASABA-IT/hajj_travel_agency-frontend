@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { signUp } from "../../store/slices/authSlice";
+
 import "./SignUp.css";
+import { register } from "../../store/slices/authSlice";
+import { toast } from "react-toastify";
 const SignUp = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -44,10 +46,49 @@ const SignUp = () => {
       [field]: false,
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signUp(userData));
+
+    // Map the user data to match the required fields in the payload
+    const userDataPayload = {
+      username: `${userData.firstName} ${userData.lastName}`, // Combine first and last name for username
+      email: userData.email,
+      phone_number: userData.phone, // Ensure this is phone_number
+      password: userData.password,
+      password_confirmation: userData.confirmPassword, // Ensure this matches the password
+    };
+
+    console.log("Data to dispatch:", userDataPayload);
+
+    // Dispatch the action
+    dispatch(register(userDataPayload))
+      .unwrap()
+      .then((response) => {
+        console.log(response.user);
+        toast.success(
+          `Registration successful for ${response.user.username}!`,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+      })
+      .catch((err) => {
+        toast.error(`Error: ${err}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
 
     // Reset form after submission
     setUserData({

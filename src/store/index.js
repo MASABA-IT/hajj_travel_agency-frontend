@@ -13,6 +13,7 @@ import packageReducer from "./slices/packageSlice";
 import packageSinglReducer from "./slices/packageSingleSlice";
 import bookingReducer from "./slices/packageBookingSlice";
 import reviewReducer from "./slices/reviewPackageSlice";
+import subscribeReducer from "./slices/subscriptionSlice";
 const store = configureStore({
   reducer: {
     loading: loadingReducer,
@@ -28,7 +29,8 @@ const store = configureStore({
     packages: packageReducer,
     packageSingleDetails: packageSinglReducer,
     bookingPackage: bookingReducer,
-    reviewPackage: reviewReducer,
+    reviews: reviewReducer,
+    subscription: subscribeReducer,
   },
 });
 

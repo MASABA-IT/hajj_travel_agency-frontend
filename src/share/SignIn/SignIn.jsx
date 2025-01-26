@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaEye, FaEyeSlash, FaFacebookF, FaTwitter } from "react-icons/fa";
-import { signIn } from "../../store/slices/authSlice";
+import { toast } from "react-toastify"; // Import toast
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
+
 import "./SignIn.css";
+import { login } from "../../store/slices/authSlice";
+import { useNavigate } from "react-router-dom";
+
 const SignIn = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState({
@@ -28,7 +34,35 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signIn(userData));
+    dispatch(login(userData))
+      .unwrap()
+      .then((response) => {
+        console.log(response);
+
+        // Using Toastify to show success message
+        toast.success(`Welcome back, ${response.user.data.username}!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        navigate("/");
+      })
+      .catch((err) => {
+        // Using Toastify to show error message
+        toast.error(`Error: ${err.message || "Login failed"}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   return (

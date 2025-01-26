@@ -1,0 +1,72 @@
+.user-profile {
+    display: flex;
+    min-height: 90vh;
+  
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+    ul {
+      list-style-type: none;
+      padding: 0;
+  
+      li {
+        margin: 15px 0;
+        cursor: pointer;
+  
+        &:hover {
+          color: #007bff;
+        }
+      }
+    }
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  /* Add this to your SCSS file */
+@keyframes slideInSidebar {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInContent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: row;
+
+  .sidebar {
+    animation: slideInSidebar 0.5s ease-out forwards;
+  }
+
+  .content {
+    animation: fadeInContent 0.5s ease-out forwards;
+  }
+}

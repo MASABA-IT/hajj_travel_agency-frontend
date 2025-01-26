@@ -109,7 +109,7 @@ const PackageDescription = () => {
     if (formData.text && formData.rating) {
       const newReview = {
         id: Date.now(), // Unique review id
-        username: username,
+        user_name: username,
         text: formData.text, // Only include text
         rating: formData.rating, // Only include rating
         package_id: formData.package_id, // Include package_id
@@ -129,6 +129,7 @@ const PackageDescription = () => {
       );
     }
   };
+
   useEffect(() => {
     if (id) {
       dispatch(getReviews(id)); // Dispatch the action with package_id
@@ -399,7 +400,7 @@ const PackageDescription = () => {
       )}
 
       {/* Review */}
-      <div className="w-full mx-auto my-5">
+      <div className="w-full min-h-[300px] mx-auto my-5">
         <h2 className="text-2xl  font-bold text-gray-800 text-start mb-6">
           Leave a Review
         </h2>
@@ -412,7 +413,7 @@ const PackageDescription = () => {
         />
 
         {/* Reviews Display */}
-        <ReviewList reviews={reviews} />
+        <ReviewList packageId={id} />
       </div>
     </div>
   );

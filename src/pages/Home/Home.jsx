@@ -1,3 +1,4 @@
+import { MdOutlineWhatsapp } from "react-icons/md";
 import AboutUs from "../../components/AboutUs/AboutUs";
 import ConsultantsView from "../../components/ConsultantsView/ConsultantsView";
 import CustomUmraAbout from "../../components/CustomUmraAbout/CustomUmraAbout";
@@ -13,19 +14,22 @@ import UmrahHajjPackages from "../../components/UmrahHajjPackages/UmrahHajjPacka
 
 const Home = () => {
   return (
-    <div className=" ">
+    <div className="">
       <HomeHero />
       <SecurityAndSafetyInfo />
       <UmrahHajjPackages />
       <ExploreSlidePackages />
-      <CustomUmraAbout/>
-      <HajjUmraCounts/>
-      <HajjPackagesDetails/>
-      <TravelHelpSupport/>
-      <ConsultantsView/>
-      <TrustpilotReviews/>
-      <SendEmail/>
-      <AboutUs/>
+      <CustomUmraAbout />
+      <HajjUmraCounts />
+      <HajjPackagesDetails />
+      <TravelHelpSupport />
+      <ConsultantsView />
+      <TrustpilotReviews />
+      <SendEmail />
+      <AboutUs />
+      <span className="w-[53px] h-[53px] flex justify-center items-center rounded-full bg-green-700 fixed bottom-14 right-14 transition-transform duration-100 hover:scale-[120%] hover:cursor-pointer">
+        <MdOutlineWhatsapp className="text-5xl text-white p-[3px]" />
+      </span>
     </div>
   );
 };

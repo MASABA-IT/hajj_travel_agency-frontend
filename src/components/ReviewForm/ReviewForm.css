@@ -2,17 +2,17 @@
   -webkit-appearance: none; /* Remove default radio button style */
   -moz-appearance: none;
   appearance: none;
-  width: 20px; /* Outer circle size */
-  height: 20px;
+  width: 16px; /* Outer circle size */
+  height: 16px;
   border-radius: 50%; /* Make the outer circle */
-  border: 2px solid #ffd700; /* Gold border */
+  border: 2px solid #767772; /* Gold border */
   background-color: white;
   position: relative;
   transition: all 0.2s ease-in-out;
 }
 
 .custom-radio:checked {
-  background-color: #ffd700; /* Gold background when selected */
+  background-color: #b49d17; /* Gold background when selected */
 }
 
 /* Inner dot when checked */
@@ -31,4 +31,11 @@
 /* Optional: Hover effect */
 .custom-radio:hover {
   border-color: #f4a261; /* Lighter border color on hover */
+}
+@media (max-width: 640px) {
+  .custom-radio {
+    width: 16px; /* Even smaller outer circle size */
+    height: 16px;
+    border-radius: 50%;
+  }
 }

@@ -1,7 +1,41 @@
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { subscribeEmail } from "../../store/slices/subscriptionSlice";
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const { message, loading, error } = useSelector(
+    (state) => state.subscription
+  );
+  console.log(message);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email) {
+      dispatch(subscribeEmail(email));
+      setEmail("");
+    }
+  };
+  useEffect(() => {
+    if (message) {
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+      });
+    }
+    if (error) {
+      toast.error(error, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+      });
+    }
+  }, [message, error]);
   return (
     <footer className="w-full bg-[#24aa86] py-10">
       <div className="max-w-[1400px] mx-auto px-6">
@@ -13,11 +47,16 @@ const Footer = () => {
           <div className="flex">
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="px-4 py-2 rounded-l-md border-none outline-none"
             />
-            <button className="px-4 py-2 bg-white text-[#24aa86] rounded-r-md">
-              Subscribe
+            <button
+              onClick={handleSubmit}
+              className="px-4 py-2 bg-white text-[#24aa86] hover:text-[#1e6854] rounded-r-md transition-colors duration-75"
+            >
+              {loading ? "Subscribing..." : "Subscribe"}
             </button>
           </div>
         </div>
@@ -118,8 +157,8 @@ const Footer = () => {
         <div className="border-t border-white pt-4 mt-8">
           <div className="flex justify-between  flex-wrap-reverse md:flex-row items-center gap-5">
             <p className=" w-full md:w-auto text-white text-sm text-center">
-              Copyright @2024, <span className="font-semibold ">MASABA</span> All
-              Rights Reserved
+              Copyright @2024, <span className="font-semibold ">MASABA</span>{" "}
+              All Rights Reserved
             </p>
             <ul className="w-full md:w-auto flex justify-center  items-center   space-x-6   text-white text-sm ">
               <li>Terms of Use</li>
@@ -129,8 +168,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </footer>
   );
 };
- 
+
 export default Footer;

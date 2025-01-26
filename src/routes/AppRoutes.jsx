@@ -34,6 +34,8 @@ import FlagshipAgencyManage from "../pages/FlagshipAgencyManage/FlagshipAgencyMa
 import BoardOfDirectorManage from "../pages/BoardOfDirectorManage/BoardOfDirectorManage";
 import SignInUp from "../share/SignInUp/SignInUp";
 import PackageDescription from "../components/PackageDescription/PackageDescription";
+import AuthGuard from "./AuthGourd";
+import UserProfile from "../pages/UserProfile/UserProfile";
 
 const AppRoutes = () => {
   const router = createBrowserRouter([
@@ -183,6 +185,14 @@ const AppRoutes = () => {
         {
           path: "/signInUp",
           element: <SignInUp />,
+        },
+        {
+          path: "/account",
+          element: (
+            <AuthGuard>
+              <UserProfile />
+            </AuthGuard>
+          ),
         },
       ],
     },

@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import HajjUmrah from "../../assets/logos/hajjUmrah.png";
 import { MdOutlineWhatsapp } from "react-icons/md";
 import "./Navbar.css";
+import { FaRegUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [clickedMenu, setClickedMenu] = useState(null);
@@ -120,7 +121,8 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <header
       className="fixed inset-x-0 z-50 mx-auto w-full backdrop-blur-md shadow-md "
@@ -204,18 +206,43 @@ const Navbar = () => {
             ))}
           </ul>
         </nav>
-
+        {/* user/login */}
         <div className="flex justify-center items-center gap-3">
-          <span className="w-[33px] h-[33px]  flex justify-center items-center rounded-full bg-green-700">
-            <MdOutlineWhatsapp className="text-3xl text-white p-[3px]" />
-          </span>
-          <NavLink
-            to="/signInUp"
-            className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-4 rounded-full text-xl font-medium shadow-md hover:shadow-md transition-all duration-300 transform hover:scale-105  active:scale-95"
-            style={{ textShadow: "0 2px 15px rgba(36, 170, 134, 0.2)" }}
-          >
-            Login
-          </NavLink>
+          {/* Conditional rendering based on token existence */}
+          {token ? (
+            <NavLink
+              to="/account"
+              className="flex items-center gap-2 group p-1  pr-4    "
+              style={{ textShadow: "2px 2px 4px rgba(0, 255, 0, 0.3)" }}
+            >
+              <FaRegUserCircle
+                className="text-3xl text-[#24aa86] border-2 rounded-full border-amber-200 transition-all duration-300 group-hover:scale-[110%]"
+                style={{ boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.2)" }}
+              />
+
+              <p className="text-gray-700 text-sm md:text-xl font-medium hover:text-shadow-md transition-all duration-300">
+                <span className="hidden md:inline-block">Welcome, </span>
+                <span
+                  className="text-[#404e42]"
+                  style={{ textShadow: "0 2px 4px #fff" }}
+                >
+                  {user?.data.username
+                    ?.split(" ")
+                    .map((word) => word.charAt(0).toUpperCase())
+                    .join("")}{" "}
+                </span>
+              </p>
+              {/* User Icon */}
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/signInUp"
+              className="text-gray-700 min-w-[90px] mx-auto flex justify-center items-center bg-white py-2 px-4 rounded-full text-xl font-medium shadow-md hover:shadow-md transition-all duration-300 transform hover:scale-110 active:scale-95"
+              style={{ textShadow: "0 2px 15px rgba(36, 170, 134, 0.2)" }}
+            >
+              Login
+            </NavLink>
+          )}
         </div>
       </div>
     </header>
