@@ -19,7 +19,6 @@ const ReviewList = (packageId) => {
     }
   }, [dispatch, reviews, packageId]); // Only refetch when packageId changes
 
-  console.log(reviews);
   return (
     <div>
       <h3 className="text-xl font-semibold text-gray-800 mb-4">

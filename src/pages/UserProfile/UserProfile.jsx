@@ -1,86 +1,138 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../store/slices/authSlice";
 import {
-  FaUser,
   FaCogs,
+  FaUser,
   FaShieldAlt,
   FaBell,
   FaSignOutAlt,
-} from "react-icons/fa"; // Import icons
+} from "react-icons/fa";
+import AccountProfile from "../../components/Accounts/AccountProfile/AccountProfile";
 
-const UserProfile = () => {
-  const [selectedSection, setSelectedSection] = useState("Profile Info");
-  const [showSettings, setShowSettings] = useState(false); // State for toggling settings menu
-  const [isMounted, setIsMounted] = useState(false); // State for animation control
+// Define your components for each section
+
+const AccountSettings = () => <div>Manage your account settings here.</div>;
+const Security = () => <div>Update your security settings here.</div>;
+const Notifications = () => <div>Manage your notification preferences.</div>;
+
+function Sidebar() {
+  // Custom hook to detect screen size
+  function useMediaQuery(query) {
+    const [matches, setMatches] = useState(false);
+
+    useEffect(() => {
+      const media = window.matchMedia(query);
+      if (media.matches !== matches) {
+        setMatches(media.matches);
+      }
+      const listener = () => setMatches(media.matches);
+      window.addEventListener("resize", listener);
+      return () => window.removeEventListener("resize", listener);
+    }, [matches, query]);
+
+    return matches;
+  }
+
+  const isDesktop = useMediaQuery("(min-width: 768px)"); // Detect if screen size is desktop
+  const [showSettings, setShowSettings] = useState(false); // State for toggling settings on mobile
+  const [selectedSection, setSelectedSection] = useState("Profile Info"); // State for selected section
+  const [isMounted, setIsMounted] = useState(false); // For fade-in animation
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const toggleSettings = () => {
+    setShowSettings((prev) => !prev);
+  };
 
   const handleMenuClick = (section) => {
-    setSelectedSection(section);
+    setSelectedSection(section); // Update selected section
   };
 
   const handleLogout = () => {
-    dispatch(logout());
-    window.location.reload();
+    console.log("Logging out");
   };
 
-  const toggleSettings = () => {
-    setShowSettings(!showSettings); // Toggle visibility of settings menu (icon + text)
+  // Map of sections to their respective components
+  const sectionComponents = {
+    "Profile Info": <AccountProfile />,
+    "Account Settings": <AccountSettings />,
+    Security: <Security />,
+    Notifications: <Notifications />,
   };
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    setIsMounted(true); // Trigger animation when component is mounted
-  }, []);
 
   return (
-    <div className={`user-profile mt-24 h-auto max-w-[1400px] mx-auto flex`}>
+    <div className={`user-profile mt-28 h-auto max-w-[1400px] mx-auto flex`}>
+      {/* Sidebar */}
       <div
-        className={`sidebar w-64 h-[90vh] bg-[#24aa86] text-white p-4 shadow-lg transition-all ease-in-out duration-300 ${
-          isMounted ? "animate-slideInSidebar" : ""
+        className={`sidebar h-[90vh]  bg-[#24aa86d5] text-white p-4 shadow-lg transition-all duration-300 ease-in-out ${
+          showSettings || isDesktop ? "w-72" : "w-16"
         }`}
       >
         <ul>
-          <li
-            className="flex items-center gap-4 cursor-pointer hover:bg-gray-700 p-2 rounded-md"
-            onClick={toggleSettings}
-          >
-            <FaCogs /> {showSettings && <span>Account Setting</span>}
-          </li>
-
-          <>
+          {[
+            {
+              icon: <FaCogs />,
+              text: "Account Setting",
+              onClick: toggleSettings,
+            },
+            {
+              icon: <FaUser />,
+              text: "Profile Info",
+              onClick: () => handleMenuClick("Profile Info"),
+            },
+            {
+              icon: <FaCogs />,
+              text: "Account Settings",
+              onClick: () => handleMenuClick("Account Settings"),
+            },
+            {
+              icon: <FaShieldAlt />,
+              text: "Security",
+              onClick: () => handleMenuClick("Security"),
+            },
+            {
+              icon: <FaBell />,
+              text: "Notifications",
+              onClick: () => handleMenuClick("Notifications"),
+            },
+          ].map((item, index) => (
             <li
+              key={index}
               className="flex items-center gap-4 cursor-pointer hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => handleMenuClick("Profile Info")}
+              onClick={item.onClick}
             >
-              <FaUser /> {showSettings && <span>Profile Info</span>}
+              {item.icon}
+              {(showSettings || isDesktop) && (
+                <span
+                  className={`transition-all duration-300 ease-in-out transform ${
+                    showSettings || isDesktop
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 -translate-x-2"
+                  }`}
+                >
+                  {item.text}
+                </span>
+              )}
             </li>
-            <li
-              className="flex items-center gap-4 cursor-pointer hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => handleMenuClick("Account Settings")}
-            >
-              <FaCogs /> {showSettings && <span>Account Settings</span>}
-            </li>
-            <li
-              className="flex items-center gap-4 cursor-pointer hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => handleMenuClick("Security")}
-            >
-              <FaShieldAlt /> {showSettings && <span>Security</span>}
-            </li>
-            <li
-              className="flex items-center gap-4 cursor-pointer hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => handleMenuClick("Notifications")}
-            >
-              <FaBell /> {showSettings && <span>Notifications</span>}
-            </li>
-          </>
-
+          ))}
           <li>
             <button
               onClick={handleLogout}
               className="flex items-center gap-4 cursor-pointer hover:bg-gray-700 p-2 rounded-md mt-4"
             >
-              <FaSignOutAlt /> {showSettings && <span>Logout</span>}
+              <FaSignOutAlt />
+              {(showSettings || isDesktop) && (
+                <span
+                  className={`transition-all duration-300 ease-in-out transform ${
+                    showSettings || isDesktop
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 -translate-x-2"
+                  }`}
+                >
+                  Logout
+                </span>
+              )}
             </button>
           </li>
         </ul>
@@ -95,18 +147,13 @@ const UserProfile = () => {
         <h1 className="text-3xl font-semibold text-gray-800 mb-4">
           {selectedSection}
         </h1>
-        <p className="text-gray-600">
-          {selectedSection === "Profile Info" &&
-            "Here is your profile information."}
-          {selectedSection === "Account Settings" &&
-            "Manage your account settings here."}
-          {selectedSection === "Security" && "Update your security settings."}
-          {selectedSection === "Notifications" &&
-            "Manage your notification preferences."}
-        </p>
+        <div className="text-gray-600">
+          {/* Render the selected section's component */}
+          {sectionComponents[selectedSection]}
+        </div>
       </div>
     </div>
   );
-};
+}
 
-export default UserProfile;
+export default Sidebar;

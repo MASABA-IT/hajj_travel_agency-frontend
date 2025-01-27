@@ -26,7 +26,7 @@ const HajjPackagesDetails = () => {
   useEffect(() => {
     dispatch(fetchPackages());
   }, [dispatch]);
-  console.log(packages, "packages");
+
   const hajjPackages = packages.map((pkg) => ({
     imgSrc: pkg?.thumbnail, // Set image source from package data
     title: pkg.title,
@@ -81,8 +81,6 @@ const HajjPackagesDetails = () => {
       },
     ],
   }));
-
-  console.log(hajjPackages, "Updated Hajj Packages");
 
   return (
     <section

@@ -4,20 +4,20 @@ import "./ReviewForm.css";
 
 // eslint-disable-next-line react/prop-types
 const ReviewForm = ({ formData = {}, handleChange, handleSubmit }) => {
-  const [rating, setRating] = useState(formData.rating || 0); // Initialize rating state
+  const [rating, setRating] = useState(formData.rating || 5);
 
   const handleTextareaChange = (e) => {
-    // Adjust the textarea height dynamically
-    e.target.style.height = "auto"; // Reset height
-    e.target.style.height = `${e.target.scrollHeight}px`; // Set new height based on content
-    handleChange(e); // Call the original handleChange function
+    e.target.style.height = "auto";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+    handleChange(e);
   };
 
-  const [hoverRating, setHoverRating] = useState(0); //
-  // Handle the rating change
+  const [hoverRating, setHoverRating] = useState(0);
+
   const handleRatingChange = (value) => {
-    setRating(value); // Update the rating value
-    handleChange({ target: { name: "rating", value } }); // Update the formData with the new rating
+    console.log(value);
+    setRating(value);
+    handleChange({ target: { name: "rating", value } });
   };
 
   return (
@@ -25,7 +25,6 @@ const ReviewForm = ({ formData = {}, handleChange, handleSubmit }) => {
       onSubmit={handleSubmit}
       className="md:w-[80%] flex flex-col justify-center bg-white shadow-md rounded-lg p-6 mb-8"
     >
-      {/* Text Input (formerly Review Input) */}
       <div className="mb-4">
         <label
           htmlFor="text"
@@ -61,7 +60,7 @@ const ReviewForm = ({ formData = {}, handleChange, handleSubmit }) => {
                 }`} // Apply color based on hoverRating or rating
                 onMouseEnter={() => setHoverRating(value)} // Set hover rating on hover
                 onMouseLeave={() => setHoverRating(0)} // Reset hover rating on mouse leave
-                onClick={() => setRating(value)} // Set the rating when clicked
+                onClick={() => handleRatingChange(value)} // Update rating on click
               >
                 <FaStar />
               </li>

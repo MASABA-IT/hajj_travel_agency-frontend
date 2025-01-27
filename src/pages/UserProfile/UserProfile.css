@@ -1,43 +1,57 @@
 .user-profile {
-    display: flex;
-    min-height: 90vh;
-  
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  
-    ul {
-      list-style-type: none;
-      padding: 0;
-  
-      li {
-        margin: 15px 0;
-        cursor: pointer;
-  
-        &:hover {
-          color: #007bff;
-        }
+  display: flex;
+  min-height: 90vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin: 15px 0;
+      cursor: pointer;
+
+      &:hover {
+        color: #007bff;
       }
     }
   }
-  
-  .content {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  /* Add this to your SCSS file */
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+.fade-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.fade-in,
+.fade-out {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Add this to your SCSS file */
 @keyframes slideInSidebar {
   0% {
     transform: translateX(-100%);

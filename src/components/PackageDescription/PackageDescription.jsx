@@ -105,7 +105,7 @@ const PackageDescription = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("message");
     if (formData.text && formData.rating) {
       const newReview = {
         id: Date.now(), // Unique review id
@@ -115,7 +115,7 @@ const PackageDescription = () => {
         package_id: formData.package_id, // Include package_id
         date: new Date(), // Add the current date
       };
-
+      console.log(newReview, "newReview");
       setReviews([newReview, ...reviews]); // Add new review to the top
       setFormData({ name: "user", text: "", rating: 0, package_id: id }); // Reset form fields
 

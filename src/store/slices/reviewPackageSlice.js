@@ -14,12 +14,10 @@ export const getReviews = createAsyncThunk(
 
       // Extract package details and reviews from the response
       const packageDetails = response.data[1]; // Assuming reviews are in the second element
-      console.log("Package details:", packageDetails.reviews); // For debugging
 
       // Return reviews to be stored in state
       return packageDetails.reviews || []; // Return empty array if no reviews
     } catch (error) {
-     
       return rejectWithValue(error.response?.data || "Review not found");
     }
   }
@@ -57,13 +55,13 @@ export const submitReview = createAsyncThunk(
 const reviewSlice = createSlice({
   name: "review", // Slice name
   initialState: {
-    reviews: [], 
-    isSubmitting: false,  
-    isLoading: false,  
-    success: false, 
-    error: null,  
+    reviews: [],
+    isSubmitting: false,
+    isLoading: false,
+    success: false,
+    error: null,
   },
-  reducers: {},  
+  reducers: {},
   extraReducers: (builder) => {
     builder
       // Handling the pending state for fetching reviews

@@ -11,7 +11,6 @@ const Footer = () => {
   const { message, loading, error } = useSelector(
     (state) => state.subscription
   );
-  console.log(message);
 
   const handleSubmit = (e) => {
     e.preventDefault();
