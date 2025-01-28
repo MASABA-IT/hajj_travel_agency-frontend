@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { Link, NavLink } from "react-router-dom";
 import HajjUmrah from "../../assets/logos/hajjUmrah.png";
-import { MdOutlineWhatsapp } from "react-icons/md";
+
 import "./Navbar.css";
 import { FaRegUserCircle } from "react-icons/fa";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [clickedMenu, setClickedMenu] = useState(null);
@@ -122,7 +123,9 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
+
+  const { username } = useSelector((state) => state.profile);
+
   return (
     <header
       className="fixed inset-x-0 z-50 mx-auto w-full backdrop-blur-md shadow-md "
@@ -226,7 +229,7 @@ const Navbar = () => {
                   className="text-[#404e42]"
                   style={{ textShadow: "0 2px 4px #fff" }}
                 >
-                  {user?.data.username
+                  {username
                     ?.split(" ")
                     .map((word) => word.charAt(0).toUpperCase())
                     .join("")}{" "}

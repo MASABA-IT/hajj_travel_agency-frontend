@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "./authorization";
 import axios from "axios";
 import { BASE_URL } from "./apiConfig";
+import { toast } from "react-toastify";
 // Initial state
 const initialState = {
   username: "",
@@ -37,9 +38,31 @@ export const fetchProfile = createAsyncThunk(
 // Async thunk to update profile data
 export const updateProfile = createAsyncThunk(
   "profile/updateProfile",
-  async (profileData) => {
-    const response = await axiosInstance.put("api/profile/update", profileData);
-    return response.data.data;
+  async (profileData, { rejectWithValue }) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await axios.post(
+        `${BASE_URL}api/change-profile`,
+        profileData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const updatedUser = { ...profileData, message: response.data.message }; // Example of returning data
+     
+      return updatedUser;
+    } catch (error) {
+      // Handle token expiration or error and reject
+      if (error.response && error.response.status === 401) {
+        // Handle unauthorized (token expired or invalid)
+        return rejectWithValue("Session expired. Please log in again.");
+      }
+      return rejectWithValue(error.message);
+    }
   }
 );
 
@@ -59,7 +82,7 @@ export const fetchDistricts = createAsyncThunk(
     const response = await axios.get(
       `${BASE_URL}api/get-districts/${divisionId}}`
     );
-    console.log("district-----------------", response.data );
+    console.log("district-----------------", response.data);
     return response.data.districts;
   }
 );
@@ -112,7 +135,19 @@ const profileSlice = createSlice({
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.success = true;
+
         Object.assign(state, action.payload);
+        console.log(action.payload);
+        localStorage.setItem("user", JSON.stringify(action.payload));
+        toast.success(`Profile updated! Hi: ${action.payload.username}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;

@@ -6,6 +6,7 @@ import {
   fetchDistricts,
   fetchThanas,
   fetchUnions,
+  updateProfile,
 } from "../../../store/slices/profileSlice";
 
 const AccountProfile = () => {
@@ -38,6 +39,7 @@ const AccountProfile = () => {
     division_id: division_id || "",
     phone_number: phone_number || "",
   });
+
   //   console.log(division_id, district_id, thana_id, union_id);
   const handleChange = (e) => {
     e.preventDefault(); // This will prevent accidental form submission
@@ -79,23 +81,20 @@ const AccountProfile = () => {
     }
   }, [dispatch, user.thana_id]);
 
+  const division = divisions.divisions;
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Dispatch an action to update the profile
+
+    dispatch(updateProfile(user));
+    localStorage.setItem("user", JSON.stringify(user));
   };
 
   if (isLoading) return <div>Loading...</div>;
-  console.log(user, "user");
-  //   console.log("divisions:", divisions);
-  //   console.log("Districts:", districts);
-  //   console.log("Thanas:", thanas);
-  //   console.log("Unions:", unions);
-  const division = divisions.divisions;
 
   return (
     <div className="account-profile">
       <h1 className="text-2xl font-semibold mb-4 text-[#24aa86]">
-        Account Profile
+        Edit your Details!
       </h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Username Field */}
@@ -107,7 +106,7 @@ const AccountProfile = () => {
             <input
               type="text"
               name="username"
-              value={user.username}
+              value={username}
               onChange={handleChange}
               className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
             />
@@ -123,7 +122,7 @@ const AccountProfile = () => {
             <input
               type="email"
               name="email"
-              value={user.email}
+              value={email}
               onChange={handleChange}
               className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
             />
@@ -139,7 +138,7 @@ const AccountProfile = () => {
             <input
               type="text"
               name="phone_number"
-              value={user.phone_number}
+              value={phone_number}
               onChange={handleChange}
               className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
             />
@@ -157,11 +156,11 @@ const AccountProfile = () => {
               <strong>Division</strong>
               <select
                 name="division_id"
-                value={user.division_id}
+                value={division_id}
                 onChange={handleChange}
                 className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
               >
-                <option value={division_id}>Select Division</option>
+                <option value="">Select Division</option>
                 {division?.map((division) => (
                   <option key={division.id} value={division.id}>
                     {division.name}
@@ -175,7 +174,7 @@ const AccountProfile = () => {
               <strong>District</strong>
               <select
                 name="district_id"
-                value={user.district_id}
+                value={district_id}
                 onChange={handleChange}
                 className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
               >
@@ -193,7 +192,7 @@ const AccountProfile = () => {
               <strong>Thana</strong>
               <select
                 name="thana_id"
-                value={user.thana_id}
+                value={thana_id}
                 onChange={handleChange}
                 className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
               >
@@ -211,7 +210,7 @@ const AccountProfile = () => {
               <strong>Union</strong>
               <select
                 name="union_id"
-                value={user.union_id}
+                value={union_id}
                 onChange={handleChange}
                 className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
               >
@@ -234,7 +233,7 @@ const AccountProfile = () => {
           <div className="flex items-center space-x-2">
             <textarea
               name="address"
-              value={user.address}
+              value={address}
               onChange={handleChange}
               className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
             />
