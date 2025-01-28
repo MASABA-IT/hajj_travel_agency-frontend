@@ -13,6 +13,7 @@ import TrustpilotReviews from "../../components/TrustpilotReviews/TrustpilotRevi
 import UmrahHajjPackages from "../../components/UmrahHajjPackages/UmrahHajjPackages";
 
 const Home = () => {
+  const phoneNumber = "+8801784083508";
   return (
     <div className="">
       <HomeHero />
@@ -27,7 +28,13 @@ const Home = () => {
       <TrustpilotReviews />
       <SendEmail />
       <AboutUs />
-      <span className="w-[53px] h-[53px] flex justify-center items-center rounded-full bg-green-700 fixed bottom-14 right-14 transition-transform duration-100 hover:scale-[120%] hover:cursor-pointer">
+      <span
+        className="w-[53px] h-[53px] flex justify-center items-center rounded-full bg-green-700 fixed bottom-14 right-14 transition-transform duration-100 hover:scale-[120%] hover:cursor-pointer"
+        onClick={() => {
+          const whatsappURL = `https://wa.me/${phoneNumber}`;
+          window.open(whatsappURL, "_blank"); // Opens WhatsApp in a new tab on desktop
+        }}
+      >
         <MdOutlineWhatsapp className="text-5xl text-white p-[3px]" />
       </span>
     </div>

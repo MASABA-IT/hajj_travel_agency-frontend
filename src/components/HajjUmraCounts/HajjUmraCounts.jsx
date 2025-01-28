@@ -1,6 +1,8 @@
 import { PiAirplaneTiltFill, PiHandbagFill } from "react-icons/pi";
 import customers from "../../assets/icons/customer.png";
 import consultants from "../../assets/icons/consultants.png";
+import { FaUsers } from "react-icons/fa";
+import { GiStarsStack } from "react-icons/gi";
 
 const HajjUmraCounts = () => {
   // Dynamic data array
@@ -25,13 +27,25 @@ const HajjUmraCounts = () => {
     },
     {
       id: 2,
-      icon: { src: customers, alt: "Customers Icon" },
+      icons: [
+        {
+          component: GiStarsStack,
+          position: "top-[10%] left-[30%]",
+          shadow: "1px 2px 4px rgba(0, 0, 0, 0.3)",
+        },
+        {
+          component: FaUsers,
+          position: "top-[35%] left-[30%]",
+          shadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+        },
+      ],
       count: "400+",
       title: "Customers",
       description: "We served",
     },
     {
       id: 3,
+
       icon: {
         src: consultants,
         alt: "Consultants Icon",
@@ -71,11 +85,19 @@ const HajjUmraCounts = () => {
                       );
                     })
                   : item.icon && (
-                      <img
-                        className="w-6 h-6"
-                        src={item.icon.src}
-                        alt={item.icon.alt}
-                      />
+                      <div className="relative">
+                        <img
+                          className="w-6 h-6"
+                          src={item.icon.src}
+                          alt={item.icon.alt}
+                        />
+                        <div
+                          className="absolute inset-0 bg-black opacity-15 rounded-sm"
+                          style={{
+                            filter: `blur(3px)`, // Optional: Adjust shadow effect if necessary
+                          }}
+                        />
+                      </div>
                     )}
               </div>
 
