@@ -280,7 +280,7 @@ const PackageDescription = () => {
         <div className="w-full md:basis-[30%] p-6 bg-white shadow-lg rounded-lg">
           <h1 className="text-xl font-semibold mb-4">Booking</h1>
           <form className="space-y-4">
-            <div>
+            {/* <div>
               <label
                 htmlFor="locationFrom"
                 className="block text-sm font-medium text-gray-700"
@@ -297,8 +297,8 @@ const PackageDescription = () => {
                 placeholder="Enter departure location"
                 autoComplete="off"
               />
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <label
                 htmlFor="locationTo"
                 className="block text-sm font-medium text-gray-700"
@@ -315,7 +315,7 @@ const PackageDescription = () => {
                 placeholder="Enter destination location"
                 autoComplete="off"
               />
-            </div>
+            </div> */}
             {/* <div>
               <label
                 htmlFor="guests"

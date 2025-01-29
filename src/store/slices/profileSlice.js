@@ -53,7 +53,7 @@ export const updateProfile = createAsyncThunk(
       );
 
       const updatedUser = { ...profileData, message: response.data.message }; // Example of returning data
-     
+
       return updatedUser;
     } catch (error) {
       // Handle token expiration or error and reject
@@ -72,7 +72,7 @@ export const fetchDivisions = createAsyncThunk(
   async () => {
     const response = await axios.get(`${BASE_URL}api/divisions`);
 
-    return response.data;
+    return response.data.divisions;
   }
 );
 
@@ -82,7 +82,7 @@ export const fetchDistricts = createAsyncThunk(
     const response = await axios.get(
       `${BASE_URL}api/get-districts/${divisionId}}`
     );
-    console.log("district-----------------", response.data);
+    // console.log("district-----------------", response.data);
     return response.data.districts;
   }
 );

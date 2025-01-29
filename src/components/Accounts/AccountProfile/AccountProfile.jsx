@@ -25,42 +25,45 @@ const AccountProfile = () => {
     districts,
     thanas,
     unions,
-    success,
-    error,
   } = useSelector((state) => state.profile);
-
+  // console.log(username, divisions);
   const [user, setUser] = useState({
-    username: username || "",
-    email: email || "",
-    address: address || "",
-    union_id: union_id || "",
-    thana_id: thana_id || "",
-    district_id: district_id || "",
-    division_id: division_id || "",
-    phone_number: phone_number || "",
+    username: "",
+    email: "",
+    address: "",
+    union_id: "",
+    thana_id: "",
+    district_id: "",
+    division_id: "",
+    phone_number: "",
   });
 
-  //   console.log(division_id, district_id, thana_id, union_id);
-  const handleChange = (e) => {
-    e.preventDefault(); // This will prevent accidental form submission
-    const { name, value } = e.target;
-    console.log(name, value);
-    setUser((prevData) => ({
-      ...prevData,
-      [name]: value,
-      ...(name === "division_id" && {
-        district_id: "",
-        thana_id: "",
-        union_id: "",
-      }),
-      ...(name === "district_id" && { thana_id: "", union_id: "" }),
-      ...(name === "thana_id" && { union_id: "" }),
-    }));
-  };
+  // Redux থেকে পাওয়া ডাটা state এ সেট করা
+  useEffect(() => {
+    setUser({
+      username: username || "",
+      email: email || "",
+      address: address || "",
+      union_id: union_id || "",
+      thana_id: thana_id || "",
+      district_id: district_id || "",
+      division_id: division_id || "",
+      phone_number: phone_number || "",
+    });
+  }, [
+    username,
+    email,
+    phone_number,
+    address,
+    union_id,
+    thana_id,
+    district_id,
+    division_id,
+  ]);
 
   useEffect(() => {
     dispatch(fetchProfile());
-    dispatch(fetchDivisions()); // Fetch Divisions
+    dispatch(fetchDivisions());
   }, [dispatch]);
 
   useEffect(() => {
@@ -81,10 +84,23 @@ const AccountProfile = () => {
     }
   }, [dispatch, user.thana_id]);
 
-  const division = divisions.divisions;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevData) => ({
+      ...prevData,
+      [name]: value,
+      ...(name === "division_id" && {
+        district_id: "",
+        thana_id: "",
+        union_id: "",
+      }),
+      ...(name === "district_id" && { thana_id: "", union_id: "" }),
+      ...(name === "thana_id" && { union_id: "" }),
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(updateProfile(user));
     localStorage.setItem("user", JSON.stringify(user));
   };
@@ -102,15 +118,13 @@ const AccountProfile = () => {
           <label className="block text-sm font-medium text-gray-700">
             Username
           </label>
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={handleChange}
-              className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
-            />
-          </div>
+          <input
+            type="text"
+            name="username"
+            value={user.username}
+            onChange={handleChange}
+            className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
+          />
         </div>
 
         {/* Email Field */}
@@ -118,15 +132,13 @@ const AccountProfile = () => {
           <label className="block text-sm font-medium text-gray-700">
             Email
           </label>
-          <div className="flex items-center space-x-2">
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+            className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
+          />
         </div>
 
         {/* Phone Number Field */}
@@ -134,15 +146,13 @@ const AccountProfile = () => {
           <label className="block text-sm font-medium text-gray-700">
             Phone Number
           </label>
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              name="phone_number"
-              value={phone_number}
-              onChange={handleChange}
-              className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
-            />
-          </div>
+          <input
+            type="text"
+            name="phone_number"
+            value={user.phone_number}
+            onChange={handleChange}
+            className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
+          />
         </div>
 
         {/* Location Fields */}
@@ -151,17 +161,16 @@ const AccountProfile = () => {
             Location Details
           </h3>
           <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-            {/* Division */}
             <div className="flex flex-col">
               <strong>Division</strong>
               <select
                 name="division_id"
-                value={division_id}
+                value={user.division_id}
                 onChange={handleChange}
-                className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
+                className="mt-1 border border-[#24aa86] rounded-md p-2"
               >
                 <option value="">Select Division</option>
-                {division?.map((division) => (
+                {divisions?.map((division) => (
                   <option key={division.id} value={division.id}>
                     {division.name}
                   </option>
@@ -169,14 +178,13 @@ const AccountProfile = () => {
               </select>
             </div>
 
-            {/* District */}
             <div className="flex flex-col">
               <strong>District</strong>
               <select
                 name="district_id"
-                value={district_id}
+                value={user.district_id}
                 onChange={handleChange}
-                className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
+                className="mt-1 border border-[#24aa86] rounded-md p-2"
               >
                 <option value="">Select District</option>
                 {districts?.map((district) => (
@@ -187,14 +195,13 @@ const AccountProfile = () => {
               </select>
             </div>
 
-            {/* Thana */}
             <div className="flex flex-col">
               <strong>Thana</strong>
               <select
                 name="thana_id"
-                value={thana_id}
+                value={user.thana_id}
                 onChange={handleChange}
-                className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
+                className="mt-1 border border-[#24aa86] rounded-md p-2"
               >
                 <option value="">Select Thana</option>
                 {thanas?.map((thana) => (
@@ -205,14 +212,13 @@ const AccountProfile = () => {
               </select>
             </div>
 
-            {/* Union */}
             <div className="flex flex-col">
               <strong>Union</strong>
               <select
                 name="union_id"
-                value={union_id}
+                value={user.union_id}
                 onChange={handleChange}
-                className="mt-1 border border-[#24aa86] rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#24aa86]"
+                className="mt-1 border border-[#24aa86] rounded-md p-2"
               >
                 <option value="">Select Union</option>
                 {unions?.map((union) => (
@@ -225,30 +231,13 @@ const AccountProfile = () => {
           </div>
         </div>
 
-        {/* Address Field */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Address
-          </label>
-          <div className="flex items-center space-x-2">
-            <textarea
-              name="address"
-              value={address}
-              onChange={handleChange}
-              className="w-full p-2 mt-1 border border-[#24aa86] rounded-md focus:outline-none focus:ring-2 focus:ring-[#24aa86] placeholder-gray-400"
-            />
-          </div>
-        </div>
-
         {/* Submit Button */}
-        <div>
-          <button
-            type="submit"
-            className="w-full p-2 bg-[#24aa86] text-white rounded-md hover:bg-[#209e7a] transition duration-300"
-          >
-            Save Changes
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="w-full p-2 bg-[#24aa86] text-white rounded-md hover:bg-[#209e7a]"
+        >
+          Save Changes
+        </button>
       </form>
     </div>
   );
