@@ -9,19 +9,21 @@ import {
 } from "../../../store/slices/appointmentSlice";
 import { toast } from "react-toastify";
 
-const Appointment = () => {
+const Appointment = ({ onAppointmentClick, setIsClick }) => {
   const dispatch = useDispatch();
   const { appointments, currentPage, totalPages, isLoading, error } =
     useSelector((state) => state.appointments);
 
   const [selectedAppointment, setSelectedAppointment] = useState(null);
-  console.log(currentPage, totalPages, appointments);
+
   useEffect(() => {
     dispatch(fetchAppointments(currentPage));
   }, [dispatch, currentPage]);
 
-  const handleViewDetails = (appointment) => {
-    setSelectedAppointment(appointment);
+  const handleViewDetails = (id) => {
+    console.log(id);
+    onAppointmentClick(id);
+    setIsClick(true);
   };
 
   const handleCloseModal = () => {
@@ -41,22 +43,12 @@ const Appointment = () => {
   };
 
   const handlePageChange = (newPage) => {
-    console.log(newPage);
+    console.log(newPage, "newPage");
     if (newPage >= 1 && newPage <= totalPages) {
       dispatch(setPage(newPage));
+      dispatch(fetchAppointments(newPage));
     }
   };
-  // const handleNextPage = () => {
-  //   if (currentPage < totalPages) {
-  //     dispatch(fetchAppointments(currentPage + 1)); // Increment page number
-  //   }
-  // };
-
-  // const handlePreviousPage = () => {
-  //   if (currentPage > 1) {
-  //     dispatch(fetchAppointments(currentPage - 1)); // Decrement page number
-  //   }
-  // };
 
   return (
     <div className="appointment-container">
@@ -110,7 +102,11 @@ const Appointment = () => {
                         </button>
                       ) : (
                         <button
-                          onClick={() => handleViewDetails(appointment)}
+                          disabled={currentPage >= totalPages}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleViewDetails(appointment.id);
+                          }}
                           className="view-details-btn"
                         >
                           <FaEye />
@@ -125,16 +121,17 @@ const Appointment = () => {
 
           <div className="pagination-buttons">
             <button
+              className="pagination-btn"
               disabled={currentPage === 1}
               onClick={() => handlePageChange(currentPage - 1)}
-              className="pagination-btn"
             >
               Previous
             </button>
+
             <button
-              disabled={currentPage === totalPages}
-              onClick={() => handlePageChange(currentPage + 1)}
               className="pagination-btn"
+              disabled={currentPage >= totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
             >
               Next
             </button>

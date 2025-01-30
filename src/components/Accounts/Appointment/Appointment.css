@@ -41,7 +41,7 @@ button:hover {
 
 /* Delete Button */
 .delete-btn {
-  color: rgba(255, 0, 0, 0.651);
+  color: rgba(37, 27, 27, 0.726);
   font-size: 18px;
   margin-right: 10px;
 }
@@ -195,7 +195,7 @@ button:hover {
 }
 
 .pagination-btn {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 10px 20px;

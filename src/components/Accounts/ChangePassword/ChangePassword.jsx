@@ -53,7 +53,7 @@ const ChangePassword = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Change your Password!</h1>
+      <h1 className="">Change your Password!</h1>
       <form onSubmit={handleSubmit}>
         {/* Old Password */}
         <div style={{ marginBottom: "10px" }}>

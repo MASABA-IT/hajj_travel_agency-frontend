@@ -43,7 +43,27 @@ export const deleteAppointment = createAsyncThunk(
     }
   }
 );
+// Async thunk for fetching appointment details by ID
+export const fetchAppointmentDetails = createAsyncThunk(
+  "appointments/fetchAppointmentDetails",
+  async (appointmentId, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `${BASE_URL}api/user-appoinment/details/${appointmentId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
+      return response.data; // Returning the details of the specific appointment
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 // Appointments slice
 const appointmentsSlice = createSlice({
   name: "appointments",
@@ -55,9 +75,11 @@ const appointmentsSlice = createSlice({
     error: null,
     deleteMessage: "",
     emptyMessage: "",
+    appointmentDetails: {},
   },
   reducers: {
     setPage: (state, action) => {
+      console.log(action.payload, "action.payload");
       state.currentPage = action.payload;
     },
   },
@@ -71,8 +93,8 @@ const appointmentsSlice = createSlice({
       .addCase(fetchAppointments.fulfilled, (state, action) => {
         state.isLoading = false;
         state.appointments = action.payload.myAppointments;
-        state.currentPage = action.payload.current_page;
-        state.totalPages = action.payload.last_page;
+        state.currentPage = action.payload.myAppointments.current_page;
+        state.totalPages = action.payload.myAppointments.last_page;
         state.emptyMessage = ""; // Reset empty message when data is fetched
       })
       .addCase(fetchAppointments.rejected, (state, action) => {
@@ -98,6 +120,17 @@ const appointmentsSlice = createSlice({
         }
       })
       .addCase(deleteAppointment.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchAppointmentDetails.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAppointmentDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.appointmentDetails = action.payload; // Store appointment details
+      })
+      .addCase(fetchAppointmentDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

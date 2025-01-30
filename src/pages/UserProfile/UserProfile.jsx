@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { FaCogs, FaUser, FaBell, FaSignOutAlt } from "react-icons/fa";
 import AccountProfile from "../../components/Accounts/AccountProfile/AccountProfile";
 import { logout } from "../../store/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ChangePassword from "../../components/Accounts/ChangePassword/ChangePassword";
 import { IoBook } from "react-icons/io5";
 import Appointment from "../../components/Accounts/Appointment/Appointment";
-
+import AppointMentDetails from "../../components/Accounts/AppointMentDetails/AppointMentDetails";
+import { fetchAppointmentDetails } from "../../store/slices/appointmentSlice";
 const Notifications = () => <div>Manage your notification preferences.</div>;
 
 function Sidebar() {
@@ -36,7 +37,8 @@ function Sidebar() {
   const [selectedSection, setSelectedSection] = useState("Profile Info"); // Current section
   const [isMounted, setIsMounted] = useState(false); // Animation state
   const [activeIndex, setActiveIndex] = useState(1); // Active menu item
-
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [isClick, setIsClick] = useState(true);
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -47,19 +49,32 @@ function Sidebar() {
 
   const handleMenuClick = (section, index) => {
     setSelectedSection(section);
-    setActiveIndex(index); // Highlight selected menu
+    setActiveIndex(index);
+    setIsClick(false);
   };
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/");
   };
+  const { appointmentDetails, loading, error } = useSelector(
+    (state) => state.appointments
+  );
 
+  const handleAppointmentClick = (appointmentId) => {
+    dispatch(fetchAppointmentDetails(appointmentId));
+    setSelectedAppointment(appointmentId);
+  };
   // Map of sections to their components
   const sectionComponents = {
     "Profile Info": <AccountProfile />,
     "Change Password": <ChangePassword />,
-    Appointment: <Appointment />,
+    Appointment: (
+      <Appointment
+        onAppointmentClick={handleAppointmentClick}
+        setIsClick={setIsClick}
+      />
+    ),
     Notifications: <Notifications />,
   };
 
@@ -115,7 +130,7 @@ function Sidebar() {
               {/* Text */}
               {(showSettings || isDesktop) && (
                 <span
-                  className={`relative z-10 transition-all duration-300 ease-in-out transform ${
+                  className={` relative z-10 transition-all duration-300 ease-in-out transform ${
                     showSettings || isDesktop
                       ? "opacity-100 translate-x-0"
                       : "opacity-0 -translate-x-2"
@@ -156,19 +171,27 @@ function Sidebar() {
       </div>
 
       {/* Content */}
-      <div
-        className={`content flex-1 p-6  bg-gray-100 rounded-lg   ${
-          isMounted ? "animate-fadeInContent" : ""
-        }`}
-      >
-        <h1 className="text-3xl font-semibold text-gray-800 mb-4">
-          {selectedSection}
-        </h1>
-        <div className="text-gray-600">
-          {/* Render the selected section's component */}
-          {sectionComponents[selectedSection]}
+
+      {appointmentDetails?.appointmentDetails?.id && isClick ? (
+        <AppointMentDetails
+          appointmentDetails={appointmentDetails}
+          setIsClick={setIsClick}
+          setSelectedSection={setSelectedSection}
+        />
+      ) : (
+        <div
+          className={` content flex-1 p-6  bg-gray-100 rounded-lg   ${
+            isMounted ? "animate-fadeInContent" : ""
+          }`}
+        >
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+            {selectedSection}
+          </h1>
+          <div className="text-gray-600">
+            {sectionComponents[selectedSection]}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
